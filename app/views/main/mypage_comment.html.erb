@@ -1,0 +1,67 @@
+<a href="/mypage/<%=current_user.id%>">취향분석</a>
+<a href="/mypage/<%=current_user.id%>/watched">봤어요</a>
+<a href="/mypage/<%=current_user.id%>/wish">보고싶어요</a>
+<a href="/mypage/<%=current_user.id%>/comment">내가쓴댓글</a>
+
+<h1>Hello <%= @user.email %></h1>
+<% if current_user.id != @user.id %>
+    <a href="/following/<%=current_user.id%>&<%=@user.id%>">follow this user</a>
+    <% if current_user.users.exists?(@user.id) %>
+        <a href="/unfollowing/<%=current_user.id%>&<%=@user.id%>">unfollow this user</a>
+    <% end %>
+<% end %>
+
+<p>Find me in app/views/main/mypage.html.erb</p>
+
+팔로잉 = 
+<%= @follower.length %>
+<% @follower.each do |er| %>
+    <p> 내가 팔로우 하는 사람 <%= er.user_ing_id %></p>
+<% end %>
+
+팔로워 = 
+<%= @following.length %>
+<% @following.each do |ing| %>
+    <p> 나를 팔로우 하는 사람 <%= ing.user_er_id %></p>
+<% end %>
+
+<hr>
+<script>webtoon_id = 1</script>
+<% webtoon_id = 1 %>
+<h2>내가 남긴 한줄평</h2>
+<% @user.comments.each do |webtoon| %>
+    <script>
+    
+    $(function () {
+        $("#webtoon_id" + webtoon_id++).rateYo({
+            starWidth: "40px",
+            halfStar: true,
+            onSet: function (rating, rateYoInstance) {
+                // alert("Rating is set to: " + rating);
+                window.location.href = "/webtoon/save?user_id=<%=current_user.id%>&web_id=<%=webtoon.id%>&rate="+rating;
+            }
+        });
+    });
+    
+    // Getter
+    var onSet = $("#webtoon_id" + webtoon_id).rateYo("option", "onSet"); //returns the function
+     
+    // Setter
+    $("#webtoon_id" + webtoon_id).rateYo("option", "onSet", function () {
+        console.log("This is a new function");
+    }); //returns a jQuery Element
+           
+    </script>
+    
+    <p><%= Webtoon.find(webtoon.webtoon_id).name %></p>
+    
+    <% if Watched.exists?(:user_id => current_user.id, :web_id => webtoon.id) %>
+    <% rate = Watched.find_by(:user_id => current_user.id, :web_id => webtoon.id) %>
+        <div id=<%= 'webtoon_id' + webtoon_id.to_s %> data-rateyo-rating='<%=rate.rate%>'> </div>
+    <% else %>
+        <div id=<%= 'webtoon_id' + webtoon_id.to_s %>> </div>
+    <% end %>
+    
+    <p><%= webtoon.comment %></p>
+    <% webtoon_id += 1%>
+<% end %>

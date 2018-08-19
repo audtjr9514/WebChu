@@ -1,0 +1,18 @@
+<form action = "/mp_save" method="post" enctype="multipart/form-data">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    명작의 제목 : <input type='text' name='mp_name'><br><br>
+    명작의 작가 : <input type='text' name='mp_writer'><br><br>
+    명작의 주제(영화,만화,애니) : 
+    <select name='mp_subject'>
+        <option value="영화"> 영화
+        <option value="만화"> 만화
+        <option value="애니"> 애니
+    </select>
+    <br><br>
+    
+    <!-- 장르를 기준으로 추천할 수 있도록 하자 / 명작도 태그 연결하기 귀찮아욤 -->
+    명작의 장르 : <input type='text' name='mp_genre'><br><br>
+    명작의 줄거리 : <input type='text' name='mp_intro'><br><br>
+    명작의 이미지 : <input type='file' name='img' accept="image/*" /><br><br>
+    <input type='submit' value='저장'>
+</form>

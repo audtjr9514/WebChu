@@ -1,0 +1,40 @@
+<a href="/mypage/<%=current_user.id%>">취향분석</a>
+<a href="/mypage/<%=current_user.id%>/watched">봤어요</a>
+<a href="/mypage/<%=current_user.id%>/wish">보고싶어요</a>
+<a href="/mypage/<%=current_user.id%>/comment">내가쓴댓글</a>
+
+<h1>Hello <%= @user.email %></h1>
+<% if current_user.id != @user.id %>
+    <a href="/following/<%=current_user.id%>&<%=@user.id%>">follow this user</a>
+    <% if current_user.users.exists?(@user.id) %>
+        <a href="/unfollowing/<%=current_user.id%>&<%=@user.id%>">unfollow this user</a>
+    <% end %>
+<% end %>
+
+<p>Find me in app/views/main/mypage.html.erb</p>
+
+팔로잉 = 
+<%= @follower.length %>
+<% @follower.each do |er| %>
+    <p> 내가 팔로우 하는 사람 <%= er.user_ing_id %></p>
+<% end %>
+
+팔로워 = 
+<%= @following.length %>
+<% @following.each do |ing| %>
+    <p> 나를 팔로우 하는 사람 <%= ing.user_er_id %></p>
+<% end %>
+
+<hr>
+<h4>봤던 작품 수</h4>
+<%= current_user.watcheds.length %>
+<h4>선호하는 플랫폼</h4>
+<%= @my_platform %>
+<h4>별점분포</h4>
+<%= @my_starrate %>
+<h4>선호하는 장르</h4>
+<%= @my_genre %>
+<h4>선호하는 작가</h4>
+<%= @my_writer %>
+<h4>선호하는 태그</h4>
+<%= @my_tag %>

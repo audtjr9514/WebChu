@@ -1,0 +1,55 @@
+<script>webtoon_id = 1</script>
+<% webtoon_id = 1 %>
+
+<h1>Webtoon#recommend</h1>
+
+<% @webtoons.each do |webtoon| %>
+<script>
+
+$(function () {
+    $("#webtoon_id" + webtoon_id++).rateYo({
+        starWidth: "40px",
+        halfStar: true,
+        onSet: function (rating, rateYoInstance) {
+            // alert("Rating is set to: " + rating);
+            window.location.href = "/webtoon/save?user_id=<%=current_user.id%>&web_id=<%=webtoon.id%>&rate="+rating;
+        }
+    });
+});
+
+// Getter
+var onSet = $("#webtoon_id" + webtoon_id).rateYo("option", "onSet"); //returns the function
+ 
+// Setter
+$("#webtoon_id" + webtoon_id).rateYo("option", "onSet", function () {
+    console.log("This is a new function");
+}); //returns a jQuery Element
+       
+</script>
+<p><%= webtoon.name %></p>
+<!-- 웹툰과 사용자의 연결된 관람 정보 -->
+<% if Watched.exists?(:user_id => current_user.id, :web_id => webtoon.id) %>
+    <% rate = Watched.find_by(:user_id => current_user.id, :web_id => webtoon.id) %>
+    <div id=<%= 'webtoon_id' + webtoon_id.to_s %> data-rateyo-rating='<%=rate.rate%>'> </div>
+<% else %>
+    <div id=<%= 'webtoon_id' + webtoon_id.to_s %>> </div>
+<% end %>
+
+<!-- 보고싶어요 버튼 -->
+<a href="/webtoon/wish?user_id=<%=current_user.id%>&web_id=<%=webtoon.id%>">
+보고싶어요 
+<% if Wish.exists?(:user_id => current_user.id, :web_id => webtoon.id) %>
+취소
+<% end %>
+버튼
+</a>
+
+<!-- 한줄평 -->
+<form action="/comment/<%=current_user.id%>&<%=webtoon.id%>">
+    <input type="text" name="comment">
+    <input type="submit" value="submit">
+</form>
+<br/>
+<% webtoon_id += 1%>
+<% end %>
+

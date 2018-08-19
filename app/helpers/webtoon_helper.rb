@@ -1,0 +1,2 @@
+module WebtoonHelper
+end

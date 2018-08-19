@@ -1,0 +1,17 @@
+<form action = "/create" method="post" enctype="multipart/form-data">
+<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    웹툰의 제목 : <input type='text' name='webtoon_name'><br><br>
+    웹툰의 작가 : <input type='text' name='webtoon_writer'><br><br>
+    웹툰의 플랫폼 : <input type='text' name='webtoon_platform'><br><br>
+    웹툰의 장르 : <input type='text' name='webtoon_genre'><br><br>
+    웹툰의 줄거리 : <input type='text' name='webtoon_intro'><br><br>
+    웹툰의 링크 : <input type='text' name='webtoon_link'><br><br>
+    웹툰의 태그 : <input type='text' name='tag'><br><br>
+    웹툰의 이미지 : <input type='file' name='img' accept="image/*" /><br><br>
+    웹툰의 완결유무 : 
+    <select name='webtoon_finished'>
+        <option value="true" />연재중 <!--연재중은 false--><br>
+        <option value="false" >완결   <!--완결은 true--><br><br>
+    </select> <br><br>
+    <input type='submit' value='저장'>
+</form>
