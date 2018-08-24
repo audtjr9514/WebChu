@@ -13,3 +13,137 @@
  *= require_tree .
  *= require_self
  */
+@font-face { font-family: 'Binggrae'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Binggrae.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'GoyangIlsan'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/GoyangIlsan.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'NanumSquareRound'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'Makgeolli'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/Makgeolli.woff') format('woff'); font-weight: normal; font-style: normal; }
+
+
+
+.navbar-brand{
+    font-family: 'Binggrae';
+}
+
+.nav-link{
+    font-family: 'GoyangIlsan'; 
+}
+
+.container1{
+    font-family: 'NanumSquareRound';
+    width: 960px;
+	margin: auto;
+}
+
+nav{
+	width:100%;
+	height:155px;
+}
+.img1{
+	margin-top:60px;
+}
+.login{
+	width:100%;
+	height: 60px;
+	padding-top: 10px;
+	font-family: 'GoyangIlsan';
+	color:#4375DB;
+}
+.n1{
+	float:right;
+	padding-right:20px;
+}
+
+.logo{
+	width:100%;
+	height: 95px;
+	background-color: #80B8FF;
+}
+.webchu{
+	
+	font-family: 'Binggrae';
+	color:white;
+	font-size: 50px;
+    float:left;
+    padding-left: 15px;
+}
+.d1{
+	padding-bottom: 20px;
+}
+.b1{
+	font-size: 20px;
+	color: white;
+	font-family: 'GoyangIlsan';
+	border-color: #529AFF;
+	border-style: solid;
+	background-color: #529AFF;
+    border-width: 2px;
+    padding: 5px;
+
+}
+.b2{
+	font-size: 20px;
+	color: white;
+	font-family: 'GoyangIlsan';
+	margin-left: 25px;
+	border-color: #529AFF;
+	border-style: solid;
+	background-color: #529AFF;
+    border-width: 2px;
+    padding: 5px;
+}
+.b3{
+	font-size: 20px;
+	color: white;
+	font-family: 'GoyangIlsan';
+	margin-left: 25px;
+	border-color: #529AFF;
+	border-style: solid;
+	background-color: #529AFF;
+    border-width: 2px;
+    padding: 5px;
+}
+.button1{
+	font-family: 'GoyangIlsan'; 
+		float: right;
+		padding-bottom:15px;
+}
+
+footer{
+	background-color:#43628C;
+	height: 280px;
+	color: white;
+}
+
+
+#test{
+	background-color: #E5E5E5 !important;
+}
+
+.q3{
+	height:100px;
+}
+
+.f1{
+	font-family: 'Makgeolli';
+	font-size:55px;
+	padding-left:200px;
+	padding-top:40px;
+	float: left;
+}
+
+.f3{
+	float: right;
+	 font-family: 'NanumSquareRound';
+padding-top:50px;
+}
+.f4{
+	 font-family: 'NanumSquareRound';
+	 float:left;
+	 padding-left:50px;
+	 padding-top:70px;
+	 	font-size:16px;
+}
+
+.social{
+	float:right;
+}

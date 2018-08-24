@@ -1,35 +1,111 @@
-<a href="/mypage/<%=current_user.id%>">취향분석</a>
-<a href="/mypage/<%=current_user.id%>/watched">봤어요</a>
-<a href="/mypage/<%=current_user.id%>/wish">보고싶어요</a>
-<a href="/mypage/<%=current_user.id%>/comment">내가쓴댓글</a>
+<div id="test">
+<body>
+    <link rel="stylesheet" type="text/css" href="mypage.css">
 
-<h1>Hello <%= @user.email %></h1>
-<% if current_user.id != @user.id %>
-    <a href="/following/<%=current_user.id%>&<%=@user.id%>">follow this user</a>
-    <% if current_user.users.exists?(@user.id) %>
-        <a href="/unfollowing/<%=current_user.id%>&<%=@user.id%>">unfollow this user</a>
-    <% end %>
-<% end %>
+    <div class="masthead">
+        <div class="mypage_back_img">
+            
+            <div clas="front"><img src="/assets/trump.png" width="100%" height="300px"></div>
+            <div class="back"><img src="/assets/black.png" width="150%" height="300px"></div>
+        </div>
+        <div class="user-state">
+            <div class="user_name_mypage"><%= @user.email %></div>
+            <!-- Button trigger modal -->
+            <button type="button" class="button_in_mypage_follow" data-toggle="modal" data-target="#FollowingModal"><div class="fbtn">Following</div></button>
+            <button type="button" class="button_in_mypage_follow" data-toggle="modal" data-target="#FollowerModal"><div class="fbtn">Follower</div></button>
 
-<p>Find me in app/views/main/mypage.html.erb</p>
+            <!--Following Modal -->
+            <div class="modal fade" id="FollowingModal" tabindex="-1" role="dialog" aria-labelledby="FollowingModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <img src="/assets/modaldolphin.png" width="60px" height="60px">
+                            <h5 class="modal-title" id="FollowingModalLabel">Following</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <% @follower.each do |er| %>
+                            
+                                <div class="row">
+                                    <div class="col-2">
+                                        <img src="/assets/peach.png" class="follow_img" alt="팔로우사진" width="80px" height"80px">
+                                    </div>
+                                    <div class="col-5">
+                                        <div class="follow_id">x.xyuri</div>
+                                        <div class="follow_name"><%= User.find(er.user_ing_id).email %></div>
+                                    </div>
+                                    <div class="col-5">
+                                        <a href="/mypage/<%=er.user_ing_id%>"><div class="sightseeing">친구취향분석보기</div></a>
+                                    </div>
+                                </div>
+                                
+                            <% end %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!--Follower Modal -->
+            <div class="modal fade" id="FollowerModal" tabindex="-1" role="dialog" aria-labelledby="FollowerModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <img src="/assets/modaldolphin.png" width="40px" height="40px" padding="20px">
+                            <h5 class="modal-title" id="FollowerModalLabel">Follower</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            
+                            <% @following.each do |ing| %>
+                                <div class="row">
+                                    <div class="col-2">
+                                        <img src="/assets/peach.jpg" class="follow_img" alt="팔로잉사진" width="80px" height"80px">
+                                    </div>
+                                    <div class="col-5">
+                                        <div class="follow_id">x.xyuri</div>
+                                        <div class="follow_name"><%= User.find(ing.user_er_id).email %></div>
+                                    </div>
+                                    <div class="col-5">
+                                        <a href="/mypage/<%= ing.user_er_id %>"><div class="sightseeing">친구취향분석보기</div></a>
+                                    </div>
+                                </div>
+                            <% end %>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+          
+             <% if current_user.id != @user.id %>
+                <% if current_user.users.exists?(@user.id) %>
+                    <a href="/unfollowing/<%=current_user.id%>&<%=@user.id%>"><button type="button" class="button_in_mypage_follow"><div class="fbtn">Unfollow this user</div></button></a>
+                <% else %>
+                    <a href="/following/<%=current_user.id%>&<%=@user.id%>"><button type="button" class="button_in_mypage_follow"><div class="fbtn">Follow this user</div></button></a>
+                <% end %>
+            <% end %>
+        </div>
+    </div>
 
-팔로잉 = 
-<%= @follower.length %>
-<% @follower.each do |er| %>
-    <p> 내가 팔로우 하는 사람 <%= er.user_ing_id %></p>
-<% end %>
-
-팔로워 = 
-<%= @following.length %>
-<% @following.each do |ing| %>
-    <p> 나를 팔로우 하는 사람 <%= ing.user_er_id %></p>
-<% end %>
-
-<hr>
-<script>webtoon_id = 1</script>
-<% webtoon_id = 1 %>
-<h2>내가 남긴 한줄평</h2>
-<% @user.comments.each do |webtoon| %>
+    <div class="lower_nav">
+	    <div class="navbar">
+		    <div class="button2">
+       	        <a class='lower_b1_in_comment' href="/mypage/<%=current_user.id%>" role="button">취향분석</a>
+       	        <a class='lower_b2_in_comment' href="/mypage/<%=current_user.id%>/watched" role="button">봤어요</a>
+       	        <a class='lower_b3_in_comment' href="/mypage/<%=current_user.id%>/wish" role="button">보고싶어요</a>
+       	        <a class='lower_b4_in_comment' href="/mypage/<%=current_user.id%>/comment" role="button">내가 쓴 댓글</a>
+       	    </div>
+         </div>
+    </div>
+    
+    <div class="content5">
+        
+    <script>webtoon_id = 1</script>
+    <% webtoon_id = 1 %>
+    <% @user.comments.each do |webtoon| %>
     <script>
     
     $(function () {
@@ -53,15 +129,38 @@
            
     </script>
     
-    <p><%= Webtoon.find(webtoon.webtoon_id).name %></p>
+    <% this_webtoon = Webtoon.find(webtoon.webtoon_id)%>
+    <div class="content3">
+        <div class="row">
+            <div class="col-4">
+                <img src="<%= this_webtoon.thumbnail %>" alt="웹툰썸네일" class="representative_img_comment" width="200px" height="200px">
+            </div>
+            <div class="col-8">
+                <div class="row">
+                    <div class="col-6"><div class="webtoon_comment"><%= this_webtoon.name %></div></div>
+                    <div class="col-6">
+                        <% if Watched.exists?(:user_id => current_user.id, :web_id => this_webtoon.id) %>
+                            <% rate = Watched.find_by(:user_id => current_user.id, :web_id => this_webtoon.id) %>
+                            <div id=<%= 'webtoon_id' + webtoon_id.to_s %> data-rateyo-rating='<%=rate.rate%>'> </div>
+                        <% else %>
+                            <div id=<%= 'webtoon_id' + webtoon_id.to_s %>> </div>
+                        <% end %>
+                    </div>
+                </div>
+                <div class="comment_body"><%= webtoon.comment %></div>
+                <div class="row">
+                    <div class="col-10"><div class="like_img"><img src="/assets/like_empty.png" alt="좋아요" width="40px" height="40px"></div></div>
+                    <div class="col-2"><div class="like_count">27</div></div>
+                </div>
+            </div>
+        </div>
+    </div>
     
-    <% if Watched.exists?(:user_id => current_user.id, :web_id => webtoon.id) %>
-    <% rate = Watched.find_by(:user_id => current_user.id, :web_id => webtoon.id) %>
-        <div id=<%= 'webtoon_id' + webtoon_id.to_s %> data-rateyo-rating='<%=rate.rate%>'> </div>
-    <% else %>
-        <div id=<%= 'webtoon_id' + webtoon_id.to_s %>> </div>
+    <% webtoon_id += 1%>
     <% end %>
     
-    <p><%= webtoon.comment %></p>
-    <% webtoon_id += 1%>
-<% end %>
+    </div>
+    
+</body>
+</div>
+    

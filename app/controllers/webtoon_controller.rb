@@ -3,8 +3,33 @@ class WebtoonController < ApplicationController
   
   # 취향저격
   def recommend
-    @webtoons = Webtoon.all
+    # @webtoons = Webtoon.all
     @user = current_user
+    # @webtoons = Array.new
+    
+    favorite_tag = Array.new
+    Watched.where({user_id: @user.id}).each do |w|
+      if w.rate >= 3.5
+        Webtoon.find(w.web_id).tags.each do |tag|
+          favorite_tag << tag
+        end
+      end
+    end
+    
+    # 내가 본 태그들 중 하나를 뽑음
+    @tag = favorite_tag.sample(1)
+    @webtoons = Array.new
+    
+    
+    @tag[0].webtoons.each do |webtoon|
+      # 본 웹툰은 추천하지 않게 작동하기 위하여
+      if Watched.exists?(:user_id => @user.id, :web_id => webtoon.id)
+      else
+        @webtoons << webtoon
+      end
+    end
+    
+    
   end
 
   # 웹툰찾기
@@ -92,9 +117,22 @@ class WebtoonController < ApplicationController
   # 명작추천
   # 현재 로그인되어 있는 유저가 본 별표가 4.0이상의 웹툰의 장르에 맞는 명작을 추천
   def suggest
-    @user = cuurent_user
-    @watched = Watched.where({ user_id: current_user.id})
-    @webtoons = Webtoon.where({ id: @watched.web_id})
+    @watch = Array.new
+    Watched.where({ user_id: current_user.id}).each do |x|
+      if x.rate >= 4.0
+        @watch << x
+      elsif x.rate >= 3.5
+        @watch << x
+      elsif x.rate >= 3.0
+        @watch << x  
+      elsif x.rate >= 2.5
+        @watch << x
+      end
+    end
+    @webtoons = Webtoon.where({ id: @watch.sample.web_id})
+    @mp_movie = Mp.where({ subject: '영화', genre: @webtoons.sample.genre }).sample
+    @mp_annimation = Mp.where({ subject: '애니', genre: @webtoons.sample.genre }).sample
+    @mp_comic = Mp.where({ subject: '만화', genre: @webtoons.sample.genre }).sample
   end
   
   # 웹툰 저장 (관람)

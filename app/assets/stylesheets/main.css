@@ -1,0 +1,112 @@
+// Place all the styles related to the main controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+@font-face { font-family: 'Binggrae'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Binggrae.woff') format('woff'); font-weight: normal; font-style: normal; }
+#webchu
+@font-face { font-family: 'GoyangIlsan'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/GoyangIlsan.woff') format('woff'); font-weight: normal; font-style: normal; }
+#navbar
+@font-face { font-family: 'NanumSquareRound'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff'); font-weight: normal; font-style: normal; }
+
+#backw{
+	background-color:white;
+}
+.container1{
+	margin: auto;
+	width: 960px;
+}
+
+
+.box{
+	padding-top: 250px;
+	background-color: black;
+	width:960px;
+	height:250px;
+	
+}
+
+.new{
+	text-align: center;
+	margin-top: 20px;
+	font-size: 20px;
+	color: white;
+	font-family: 'NanumSquareRound';
+	 border-color: #529AFF;
+	border-style: solid;
+	background-color: #529AFF;
+    border-width: 2px;
+    padding-left: 5px;
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    margin-right: 835px;
+}
+
+.img1{
+	background-color:white;
+}
+
+.top{
+	text-align: center;
+	margin-top: 20px;
+	font-size: 20px;
+	color: white;
+	 border-color: #529AFF;
+	border-style: solid;
+	background-color: #529AFF;
+    border-width: 2px;
+    padding-left: 5px;
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    margin-right: 790px;
+    	font-family: 'NanumSquareRound';
+}
+.s1{
+	display: grid;
+	grid-template-columns:270px 270px 270px 270px;
+	font-family: 'NanumSquareRound';
+
+}
+
+.s3{
+		width:900px;
+		height:250px;
+		background-color: black;
+ 	    background-color: rgba( 0, 0, 0, 0.5 );
+ 	      margin-left: 50px;
+ 	      font-family: 'NanumSquareRound';
+ 	      margin-bottom:50px;
+ 	      border-width: 3px;
+ 	      border-color: black;
+ 	      border-style: dashed;
+}
+.t2{
+	text-align:center;
+	color:white;
+	 font-family: 'NanumSquareRound';
+	 font-size: 30px;
+	 padding-top:60px;
+}
+.t3{
+	text-align:center;
+	padding-top:20px;
+	font-family: 'NanumSquareRound';
+	color:rgba( 0, 0, 0, 0.5 );
+}
+.a1{
+	padding-right: 130px;
+	text-align:center;
+	padding-top: 5px;
+}
+
+.comen1{
+	margin-right: 250px;
+	padding-top: 20px;
+}
+
+.b15
+{
+	float: right;
+	padding-top: 30px;
+	margin-right: 110px;
+}

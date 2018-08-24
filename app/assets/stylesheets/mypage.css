@@ -1,0 +1,636 @@
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+
+@font-face { font-family: 'Binggrae'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Binggrae.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'GoyangIlsan'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/GoyangIlsan.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'NanumSquareRound'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff'); font-weight: normal; font-style: normal; }
+
+
+.lower_nav{
+	width:100%;
+	height: 95px;
+	background-color: #80B8FF;
+
+}
+
+.button2{
+	margin-top: 20px;
+	display: flex;
+	width: 960px;
+	flex: 1 1 auto;
+}
+
+.lower_b1_in_analysis{
+	font-size: 20px;
+	color: #529AFF;
+	font-family: 'GoyangIlsan';
+    border-color: white;
+	border-style: solid;
+	background-color: white;
+    border-width: 2px;
+    padding: 5px;
+    flex: auto;
+    text-align: center;
+}
+
+.lower_b2_in_analysis{
+	font-size: 20px;
+	color: white;
+	font-family: 'GoyangIlsan';
+    padding: 5px;
+    flex: auto;
+    text-align: center;
+}
+
+.lower_b3_in_analysis{
+	font-size: 20px;
+	color: white;
+	font-family: 'GoyangIlsan';
+    padding: 5px;
+    flex: auto;
+    text-align: center;
+}
+
+.lower_b4_in_analysis{
+	font-size: 20px;
+	color: white;
+	font-family: 'GoyangIlsan';
+    padding: 5px;
+    flex: auto;
+    text-align: center;
+}
+
+.lower_b1_in_watched{
+	font-size: 20px;
+	color: white;
+	font-family: 'GoyangIlsan';
+    padding: 5px;
+    flex: auto;
+    text-align: center;
+}
+
+.lower_b2_in_watched{
+	font-size: 20px;
+	color: #529AFF;
+	font-family: 'GoyangIlsan';
+    border-color: white;
+	border-style: solid;
+	background-color: white;
+    border-width: 2px;
+    padding: 5px;
+    flex: auto;
+    text-align: center;	
+}
+
+.lower_b3_in_watched{
+	font-size: 20px;
+	color: white;
+	font-family: 'GoyangIlsan';
+    padding: 5px;
+    flex: auto;
+    text-align: center;
+}
+
+.lower_b4_in_watched{
+	font-size: 20px;
+	color: white;
+	font-family: 'GoyangIlsan';
+    padding: 5px;
+    flex: auto;
+    text-align: center;
+}
+
+.lower_b1_in_wish{
+	font-size: 20px;
+	color: white;
+	font-family: 'GoyangIlsan';
+    padding: 5px;
+    flex: auto;
+    text-align: center;
+}
+
+.lower_b2_in_wish{
+	font-size: 20px;
+	color: white;
+	font-family: 'GoyangIlsan';
+    padding: 5px;
+    flex: auto;
+    text-align: center;	
+}
+
+.lower_b3_in_wish{
+	font-size: 20px;
+	color: #529AFF;
+	font-family: 'GoyangIlsan';
+    border-color: white;
+	border-style: solid;
+	background-color: white;
+    border-width: 2px;
+    padding: 5px;
+    flex: auto;
+    text-align: center;
+}
+
+.lower_b4_in_wish{
+	font-size: 20px;
+	color: white;
+	font-family: 'GoyangIlsan';
+    padding: 5px;
+    flex: auto;
+    text-align: center;	
+}
+
+.lower_b1_in_comment{
+	font-size: 20px;
+	color: white;
+	font-family: 'GoyangIlsan';
+    padding: 5px;
+    flex: auto;
+    text-align: center;
+}
+
+.lower_b2_in_comment{
+	font-size: 20px;
+	color: white;
+	font-family: 'GoyangIlsan';
+    padding: 5px;
+    flex: auto;
+    text-align: center;	
+}
+
+.lower_b3_in_comment{
+	font-size: 20px;
+	color: white;
+	font-family: 'GoyangIlsan';
+    padding: 5px;
+    flex: auto;
+    text-align: center;
+}
+
+.lower_b4_in_comment{
+	font-size: 20px;
+	color: #529AFF;
+	font-family: 'GoyangIlsan';
+    border-color: white;
+	border-style: solid;
+	background-color: white;
+    border-width: 2px;
+    padding: 5px;
+    flex: auto;
+    text-align: center;
+}
+
+.mypage_back_img{
+	margin: 0;
+	padding: 0;
+	float: left;
+	position: relative;
+	width: 100%;
+	height: 300px;
+}
+
+.front{
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.back{
+	position: absolute;
+	top: 0;
+	left: 0;
+	opacity: 0.5;
+}
+
+.content1{
+    font-family: 'NanumSquareRound';
+    width: 1330px;
+	text-align: center;
+	margin: auto;
+}
+
+.content2{
+	font-family: 'NanumSquareRound';
+    width: 1250px;
+	text-align: center;
+	margin: auto;
+	margin-top: 50px;
+}
+
+
+.content3{
+	width: 1250px;
+	margin: auto;
+	text-align: center;
+	background-color: #ffffff;
+	border-radius: 40px;
+	margin-top: 40px;
+	padding-top: 20px !important;
+	padding-bottom: 20px !important;
+}
+
+.content4{
+	width: 390px;
+	margin: auto;
+}
+
+.content5{
+	padding-bottom: 40px;
+}
+
+.content6{
+	background-color: #F39C12;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+.content7{
+	width: 440px !important;
+	border-radius: 20px !important;
+	margin: auto;
+	border-color: #80B8FF;
+	padding:20px;
+}
+
+.content8{
+	margin: 10px;
+}
+
+.card{
+	width: 600px;
+	margin-top: 40px;
+	position: relative;
+	border-radius: 20px !important;
+	margin-bottom: 40px !important;
+}
+
+.card-text1{
+	width: 200px;                              
+	height: 200px;                            
+	background: #80B8FF;                           
+	border-radius: 100px;  
+	margin: auto;
+}
+
+.card-subtitle{
+	padding-bottom: 20px;
+	color: #6D6C83;
+}
+
+.label{
+	padding-top: 50px;
+	color: white;
+}
+
+.stat-count{
+	padding-top: 5px;
+	font-size: 50px;
+	color: #FAE232;
+}
+
+.card-title{
+	padding-top: 10px;
+	padding-bottom: 10px;
+	color:#6D6C83;
+	font-size: 30px;
+}
+
+.platform{
+	font-size: 15px;
+	text-align: center;
+
+}
+
+.platform-percent{
+	font-size: 15px;
+	text-align: center;
+}
+
+.row{
+	margin-bottom: 20px;
+}
+
+.writer_name{
+	text-align: left;
+	font-size: 25px;
+	margin-top: 35px;
+}
+
+.representative_title{
+	text-align: left;
+	margin-top: 10px;
+	color:#6D6C83;
+	font-size: 18px;
+}
+
+.webtoon{
+	font-weight: bold;
+	font-size: 20px;
+	color: #434343;
+	margin-top: 20px;
+}
+
+.writer{
+	font-size: 16px;
+	color: #434343;
+}
+
+.platform{
+	font-size: 16px;
+	color: #434343;
+	margin-bottom: 20px;
+}
+
+.webtoon_comment{
+	text-align: left;
+	margin-top: 60px !important;
+	font-size: 23px;
+	font-weight: bold;
+	font-family: 'GoyangIlsan';
+}
+
+.comment_body{
+	text-align: left;
+	font-family: 'GoyangIlsan';
+	margin-top: 20px;
+	font-size: 17px;
+}
+
+.representative_img_comment{
+	border-radius: 100px;
+}
+
+.row{
+	margin-bottom: 0px !important;
+}
+
+.like_img{
+	text-align: right;
+}
+
+.like_count{
+	text-align: left;
+	font-weight: bold;
+	color: #434343;
+	margin-top: 10px;
+	font-family: 'GoyangIlsan';
+}
+
+.webtoon_thumbnail{
+	border-radius: 7px;
+}
+
+.halfStar{
+	text-align: center;
+}
+
+.representative_img{
+	margin-bottom: 20px;
+	border-radius: 20px;
+}
+
+
+.fbtn{
+	display: inline-block;
+	color: white;
+	font-size: 16px;
+	margin-right: 5px;
+}
+
+.button_in_mypage_follow{
+	padding: 0px;
+	background-color: transparent;
+	border-color: transparent;
+}
+
+.modal-title{
+	color: #529AFF;
+	padding-left: 10px;
+	padding-top: 15px;
+	font-size: 25px;
+}
+
+.sightseeing{
+	border-color: #529AFF;
+	border-style: solid;
+    border-width: 2px;
+    margin-top: 15px;
+    text-align: center;
+    color: #434343;
+}
+
+.follow_id{
+	margin-top: 10px;
+	text-align: center;
+	color: #434343;
+}
+.follow_name{
+	text-align: center;
+	color: #434343;
+}
+
+.follow_img{
+	border-radius: 6px;
+	margin-bottom: 20px;
+}
+
+.card_in_watched{
+	width: 250px;
+	background-color: white;
+	border-radius: 8px;
+	padding-top: 30px;
+	padding-bottom: 30px;
+	margin-bottom: 40px;
+	text-align: center;
+	margin-left: 20px;
+}
+
+.webtoon_name_modal{
+	font-size: 30px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.jq-ry-container{
+	margin-top: 55px;
+	margin-left: 60px;
+}
+
+.starInWatched{
+	text-align:center;
+	padding: 20px;
+	margin: auto;
+	margin-bottom: 30px;
+}
+
+.StarRatingbtn{
+	color: #80B8FF;
+	border-color: #80B8FF;
+	border-style: solid;
+    border-width: 2px;
+    padding: 0px 10px;
+}
+
+.average_title{
+	color: white;
+	background-color: #80B8FF;
+	border-color: #80B8FF;
+	border-style: solid;
+    border-width: 2px;
+    border-radius: 0px 30px;
+    padding: 10px;
+}
+
+.averageScore{
+	display: inline-block;
+	margin-left: 5px;
+	color: #FAE232;
+}
+
+.rating_friends1{
+	margin-left: 70px !important;
+}
+
+.rating_friends2{
+	margin-right: 20px !important;
+	text-align: left;
+	margin-top: 8px;
+}
+
+.prefer_tag{
+	margin: auto;
+	position: relative;
+	width: 350px;
+	height: 220px;
+	text-align: center;
+}
+
+.prefer_tag{
+	padding: 10px;
+}
+
+.w-1{
+	font-size: 22px;
+	color: #529AFF;
+	text-align: center;
+	margin: auto;
+}
+
+.w-2{
+	font-size: 18px;
+	color: #80B8FF;
+	text-align: center;
+}
+
+.w-3{
+	font-size: 14px;
+	color:#6D6C83;
+	text-align: center;
+}
+
+.chart {
+  background: white;
+  width: 100%;
+  padding-top: 20px;
+}
+
+.distribution{
+  	display: flex;
+  	align-items: center;
+  	justify-content: center;
+  	height: 100%;
+  	width: 100%;
+}
+
+.stats{
+	text-align: center;
+}
+
+.stat-count2{
+	font-size: 40px;
+	color: #FAE232;
+}
+
+.stat-text{
+	color: white;
+}
+
+.tick{
+	fill: white;
+}
+
+.circle-chart{
+	position: relative;
+    margin-bottom: 15px;
+    height: 250px;
+}
+
+.genre-card-img{
+	position: absolute;
+	top:72px;
+	left: 230px;
+}
+
+.genre-icon{
+	width: 290px;
+	margin: auto;
+}
+
+.genre-icon1{
+	width: 20px;
+	height: 20px;
+	background: #FFDE9E;
+    border-radius: 100px;
+    margin: auto;
+}
+
+.genre-icon2{
+	width: 20px;
+	height: 20px;
+	background: #A1C5FF;
+    border-radius: 100px;
+    margin: auto;
+}
+
+.genre-icon3{
+	width: 20px;
+	height: 20px;
+	background: #FFDEFC;
+    border-radius: 100px;
+    margin: auto;
+}
+
+.genre-name{
+	margin-top: 15px;
+}
+
+.genre-score-average{
+	margin-top: 10px;
+	margin-bottom: 20px;
+	font-size: 15px;
+}
+
+.charts__chart{
+	background-color: #80B8FF !important;
+}
+
+.masthead{
+    font-family: 'NanumSquareRound';
+    width: 100%;
+    height: 300px;
+    display: flex;
+    align-items: flex-end;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.user_name_mypage{
+    color: white;
+    text-align: right;
+    font-size: 20px;
+    margin-right: 20px;
+}
+
+.user-state{
+	position: absolute;
+	padding-bottom: 20px;
+}

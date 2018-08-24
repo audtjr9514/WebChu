@@ -1,0 +1,298 @@
+// Place all the styles related to the webtoon controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@font-face { font-family: 'Binggrae'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Binggrae.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'GoyangIlsan'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/GoyangIlsan.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'NanumSquareRound'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'SDMiSaeng'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/SDMiSaeng.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'InkLipquid'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/InkLipquid.woff') format('woff'); font-weight: normal; font-style: normal; }
+@font-face { font-family: 'HSGaeulsenggak'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/HSGaeulsenggak.woff') format('woff'); font-weight: normal; font-style: normal; }
+
+#f1{
+    margin-top:30px;
+   font-family: 'GoyangIlsan';
+    color:#529AFF;
+}
+.fb{
+    margin-left:900px;
+    margin-bottom:5px;
+}
+.f2{
+    border-color: #529AFF;
+	border-style: solid;
+	background-color: white;
+    border-width: 2px;
+    padding-top:30px;
+    padding-right:30px;
+  padding-left:30px;
+  padding-bottom:150px;
+  color:black;
+  }
+  .o1{
+      background-color:white;
+      width:960px;
+      height:470px;
+
+  }
+  .o2{
+       background-color:white;
+       width:960px;
+  }
+ .t6{
+     color: #529AFF;
+    font-family: 'HSGaeulsenggak';
+    margin-bottom:20px;
+  }
+  .m1{
+    font-size:42px;
+    border-color: #80B8FF;
+	border-style: solid;
+	background-color: #80B8FF;
+    border-width: 2px;
+     padding: 5px;
+    margin-right: 690px;
+    margin-left:30px;
+    color:white;
+   font-family: 'InkLipquid';
+
+  }
+ 
+ .m3{
+      font-size:42px;
+    border-color: #80B8FF;
+	border-style: solid;
+	background-color: #80B8FF;
+    border-width: 2px;
+     padding: 4px;
+    margin-left: 690px;
+    margin-right:30px;
+    color:white;
+   font-family: 'InkLipquid';
+
+ }
+  .heart{
+      float:right;
+      margin-right:60px;
+  }
+  section{
+      padding-top:30px;
+  }
+  .img2{
+      float:right;
+      margin-right:30px;
+  }
+  .img3{
+       float:left;
+      margin-left:30px;
+  }
+  .m2{
+      float:left;
+      font-size:22px;
+      width:460px;
+      margin-left:30px;
+      padding-top:20px;
+  }
+  .m4{
+        float:right;
+      font-size:22px;
+      width:460px;
+      margin-right:30px;
+      padding-top:20px;
+  }
+ 
+.content3{
+	width: 1100px;
+	margin: auto;
+	text-align: center;
+	background-color: #ffffff;
+	border-radius: 40px;
+	margin-top: 40px;
+	
+}
+
+.row{
+	margin-bottom: 20px;
+}
+
+.webtoon_comment1{
+	text-align: left;
+	margin-top: 30px;
+	font-size: 23px;
+	font-weight: bold;
+	font-family: 'GoyangIlsan';
+}
+
+.comment_body{
+	text-align: left;
+	font-family: 'GoyangIlsan';
+	font-size: 17px;
+}
+
+.webtoon_id1{
+        float: right;
+        margin-right: 30px;
+
+}
+
+#q1{
+    height:50px;
+		background-color: #E5E5E5;
+}
+#q2{
+      height:10px;
+		background-color: #E5E5E5;
+}
+.o1_t1{
+    padding-top: 10px;
+    text-align: center;
+}
+#row1 {
+    white-space: nowrap;/* 가로스크롤시 중요한 속성 */
+      overflow:hidden;
+    padding: 10px 10px 5px;
+    color:#529AFF;
+    background: white;
+    border-color: #80B8FF;
+	border-style: solid;
+    border-width: 2px;
+    width: 1000px;
+   
+}
+
+#row1 .items {
+    display: inline-block;
+    width: 300px;
+    margin: auto;
+}
+
+#row1 .items:first-child {
+    margin-left: 0;
+}
+
+#row1 .items p {
+    margin-bottom: 8px;
+    text-indent: 7px;
+    
+}
+
+#row1 .items ul {
+    border-radius: 3px;
+    border: 1px solid #b5b5b5;
+    height: 135px;
+    overflow-y: scroll;
+    padding: 3px 3px 8px;
+    background: #fff;
+}
+
+#row1 .items ul li {}
+
+#row1 .items ul li a {
+    display: block;
+    overflow: hidden;
+    margin-top: 8px;
+    padding: 6px;
+    color:black;
+    font-size:12px;
+    text-decoration:none;
+}
+
+#row1 .items ul li:first-child a {
+    margin-top: 3px;
+}
+
+#row1 .items ul li.on a {
+    border: 1px solid #c9cccf;
+    border-radius: 3px;
+    font-weight: bold;
+    background-color: #efefef;
+}
+
+.c2{
+    margin-left:270px;
+    margin-top:50px;
+	display: grid;
+	grid-template-columns:266px 266px 266px 266px;
+}
+
+form{
+    
+padding-top:20px;
+}
+
+.i1{
+    
+    font-size: 20px;
+}
+
+.average_title{
+	color: white;
+	background-color: #80B8FF;
+	border-color: #80B8FF;
+	border-style: solid;
+    border-width: 2px;
+    border-radius: 0px 30px;
+    padding: 10px;
+}
+
+.averageScore{
+	display: inline-block;
+	margin-left: 5px;
+	color: #FAE232;
+}
+
+.webtoon_name_modal1{
+	font-size: 30px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+  text-align:center;
+  margin-right:70px;
+}
+
+.row3{
+	margin-bottom: 0px !important;
+}
+
+.rating_friends1{
+	margin-left: 85px !important;
+}
+
+.rating_friends2{
+	text-align: left;
+}
+
+.findermodal{
+   margin-left:80px;
+}
+
+.halfStar{
+	text-align: center;
+}
+
+
+.starInWatched{
+	text-align:center;
+	padding: 20px;
+	margin: auto;
+	margin-bottom: 30px;
+}
+
+.q4{
+    height:70px;
+}
+.modal-footer1{
+    width: 300px;
+}
+
+#re_position{
+    padding-top:18px;
+}
+
+ul{
+    color:black;
+    font-family: 'GoyangIlsan';
+}
+
+.f_like{
+    float: right;
+}

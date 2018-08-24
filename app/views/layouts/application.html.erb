@@ -6,6 +6,7 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   
+  
   <!-- Bootstrap CDN -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -17,43 +18,139 @@
   
 </head>
 <body>
+ <!--nav 시작-->
+  <nav>
+    <!--홈 마이페이지 로그아웃 버튼-->
+      <div class ="login">
+         <div class="n1">
+           <% if user_signed_in?%>
+             <button type="button" class="btn btn-link btn-lg"><a href="/">Home</a></button>
+         	  <button type="button" class="btn btn-link btn-lg"><a href="/mypage/<%= current_user.id %>">My Page</a></button>
+            <button type="button" class="btn btn-link btn-lg"><a href="/users/sign_out" data-method="delete">Log out</a></button>
+         	  <%else%>         
+       	     <button type="button" class="btn btn-link btn-lg" data-toggle="modal" data-target="#SingupModal">Sign up </button>
+       	     <button type="button" class="btn btn-link btn-lg" data-toggle="modal" data-target="#LoginModal">Login </button>
+       	     <%end%>
+                  <!--Singup Modal -->
+                  <div class="modal fade" id="SingupModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                           <img src="/assets/modaldolphin.png" width="50px" height="50px">
+                          <h5 class="modal-title" id="exampleModalLongTitle">Sign up</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        
+                        <div class="modal-body">
+                           <form action='/users' method='post'>
+                               <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+                        <div class="form-group">
+                          <label for="user_email">Email address</label>
+                          <input type="email" class="form-control" autofocus="autofocus" id="user_email" required="required" aria-describedby="emailHelp" aria-required="true" placeholder="Enter email" value="" name="user[email]">
+                          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small></div>
+                        <div class="form-group">
+                          <label for="user_password">Password</label>
+                          <input type="password" class="form-control" id="user_password"  required="required" aria-required="true"  placeholder="Password" name="user[password]" >  
+                        </div>
+                         <div class="form-group">
+                          <label for="<user_pass></user_pass>word_confirmation"> One More Password</label>
+                          <input type="password" class="form-control" id="user_password_confirmation" required="required" aria-required="true" placeholder="Password" name="user[password_confirmation]" >
+                        </div>
+                      
+                        </div>
+                        <div class="modal-footer">
+                           <button type="submit"  name="commit" value="회원가입" class="btn btn-primary">Sign up</button>
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+       	    </a> 
+       	    
+       	    <!--Login Modal-->
+         	    
+              <div class="modal fade" id="LoginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenter" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                       <img src="/assets/modaldolphin.png" width="50px" height="50px">
+                      <h5 class="modal-title" id="exampleModalLongTitle">Login</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <form action='/users/sign_in' method='post'>
+                        <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+                        <div class="form-group">
+                          <label for="user_email">Email address</label>
+                          <input type="email" value="" name="user[email]" autofocus="autofocus"  class="form-control" id="user_email" aria-describedby="emailHelp" placeholder="Enter email">
+                          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleInputPassword1 user_password">Password</label>
+                          <input type="password" name="user[password]" class="form-control" id="user_password" placeholder="Password">
+                        </div>
+                      
+                    </div>
+                    <div class="modal-footer">
+                      <button type="submit" class="btn btn-primary" name="commit" >Login</button>
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                    </form>
+                  </div>
+  	    	</div>
+              </div>
+              </a>
+               
+  		</div>
+      </div>    
+  	
+      <div class="logo">
+        <div class="navbar">
+         <p class="webchu" > <img src="/assets/dolphin.png" width="80px" height="80px"> Webchu</p>  
+  		  		<div class="button1">
+  		  		  <% if user_signed_in?%>
+         	            <a class='b1' href="/recommend" role="button">취향저격</a>
+         	            <a class='b2' href="/finder" role="button">작품찾기</a>
+         	            <a class='b3' href="/suggest" role="button">오타쿠 양성</a>
+         	    <%else%>
+         	            <a class='b1' href="/recommend" data-toggle="modal" data-target="#LoginModal" role="button">취향저격</a>
+         	            <a class='b2' href="/finder" data-toggle="modal" data-target="#LoginModal" role="button">작품찾기</a>
+         	            <a class='b3' href="/suggest" data-toggle="modal" data-target="#LoginModal" role="button">오타쿠 양성</a>
+         	            
+         	    <%end%>        
+         	            
+                  </div>
+              </div>
+           
+      </div>
+  
+  </nav>
+  
+  <!-- RoR Flash -->
+  <%# flash.each do |name, msg| -%>
+        <%# content_tag :div, msg, class: name %>
+  <%# end -%>
+  
+  <%= yield %>
+  </body>
+  <!--footer-->
+  <footer>
+    <div class="inner">
+      <div class="f1"><p><strong>WEBCHU</strong></p></div>
+      <div class="f4"> <p>회사소개</p></div>
+      <div class="f4"> <p>공지사항</p></div>
+       <div class="f4"> <p>이용약관</p></div>   
+         <div class="f4"> <p>고객센터</p></div> 
+         <div class="social">
+         <img src="assets/facebook.png" width="40px" height="40px">
+      </div>
+      <div class="f3"><p><strong>오타쿠 치고 나쁜사람 없어요</strong></p></div>
+    </div>
+  </footer>
 
-<!-- Bootstrap Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="/">WEBCHU</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarText">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="/recommend">취향저격</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/finder">작품찾기</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/suggest">오타쿠양성</a>
-      </li>
-    </ul>
-    <span class="navbar-text">
-      <% if user_signed_in? %>
-        <a href="/mypage/<%= current_user.id %>">Mypage</a>
-        <a href="/users/sign_out" data-method="delete">sign_out</a>
-      <% else %>
-        <a href="/users/sign_in">sign_in</a>
-      <% end %>
-    </span>
-  </div>
-</nav>
-
-<!-- RoR Flash -->
-<% flash.each do |name, msg| -%>
-      <%= content_tag :div, msg, class: name %>
-<% end -%>
-
-<%= yield %>
-
-
-</body>
 </html>

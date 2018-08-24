@@ -62,8 +62,24 @@ class MainController < ApplicationController
     
     @my_platform = platform
     @my_starrate = starrate
+    
+    @my_starrate = starrate.sort_by {|_key, value| value}.reverse.to_h
+    @my_rate = {0.5=>120, 1.0=>120, 1.5=>120, 2.0=>120,
+                2.5=>120, 3.0=>120, 3.5=>120, 4.0=>120,
+                4.5=>120, 5.0=>120}
+    max = 10
+    @aver = 0
+    @my_starrate.each do |key, value|
+      @my_rate[key] = max
+      max += 10
+      @aver += (key * value)
+    end
+    if @my_starrate.length > 0
+      @my_star_aver = @aver / @my_starrate.length
+    end
+    
     @my_genre = genre
-    @my_writer = writer
+    @my_writer = writer.sort_by {|_key, value| value}.reverse.to_h
     @my_tag = tag
   end
   

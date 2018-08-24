@@ -1,69 +1,202 @@
-<a href="/mypage/<%=current_user.id%>">취향분석</a>
-<a href="/mypage/<%=current_user.id%>/watched">봤어요</a>
-<a href="/mypage/<%=current_user.id%>/wish">보고싶어요</a>
-<a href="/mypage/<%=current_user.id%>/comment">내가쓴댓글</a>
-
-<h1>Hello <%= @user.email %></h1>
-<% if current_user.id != @user.id %>
-    <a href="/following/<%=current_user.id%>&<%=@user.id%>">follow this user</a>
-    <% if current_user.users.exists?(@user.id) %>
-        <a href="/unfollowing/<%=current_user.id%>&<%=@user.id%>">unfollow this user</a>
-    <% end %>
-<% end %>
-
-<p>Find me in app/views/main/mypage.html.erb</p>
-
-팔로잉 = 
-<%= @follower.length %>
-<% @follower.each do |er| %>
-    <p> 내가 팔로우 하는 사람 <%= er.user_ing_id %></p>
-<% end %>
-
-팔로워 = 
-<%= @following.length %>
-<% @following.each do |ing| %>
-    <p> 나를 팔로우 하는 사람 <%= ing.user_er_id %></p>
-<% end %>
-
-<hr>
-<script>webtoon_id = 1</script>
-<% webtoon_id = 1 %>
-<h2>내가 본 웹툰</h2>
-<% @user.watcheds.each do |webtoon| %>
-    <script>
+<div id="test">
+<body>
     
-    $(function () {
-        $("#webtoon_id" + webtoon_id++).rateYo({
-            starWidth: "40px",
-            halfStar: true,
-            onSet: function (rating, rateYoInstance) {
-                // alert("Rating is set to: " + rating);
-                window.location.href = "/webtoon/save?user_id=<%=current_user.id%>&web_id=<%=webtoon.id%>&rate="+rating;
-            }
-        });
-    });
+    <link rel="stylesheet" type="text/css" href="mypage.css">
+
+    <div class="masthead">
+        <div class="mypage_back_img">
+            
+            <div clas="front"><img src="/assets/trump.png" width="100%" height="300px"></div>
+            <div class="back"><img src="/assets/black.png" width="150%" height="300px"></div>
+        </div>
+        <div class="user-state">
+            <div class="user_name_mypage"><%= @user.email %></div>
+            <!-- Button trigger modal -->
+            <button type="button" class="button_in_mypage_follow" data-toggle="modal" data-target="#FollowingModal"><div class="fbtn">Following</div></button>
+            <button type="button" class="button_in_mypage_follow" data-toggle="modal" data-target="#FollowerModal"><div class="fbtn">Follower</div></button>
+
+            <!--Following Modal -->
+            <div class="modal fade" id="FollowingModal" tabindex="-1" role="dialog" aria-labelledby="FollowingModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <img src="/assets/modaldolphin.png" width="60px" height="60px">
+                            <h5 class="modal-title" id="FollowingModalLabel">Following</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <% @follower.each do |er| %>
+                            
+                                <div class="row">
+                                    <div class="col-2">
+                                        <img src="/assets/peach.png" class="follow_img" alt="팔로우사진" width="80px" height"80px">
+                                    </div>
+                                    <div class="col-5">
+                                        <div class="follow_id">x.xyuri</div>
+                                        <div class="follow_name"><%= User.find(er.user_ing_id).email %></div>
+                                    </div>
+                                    <div class="col-5">
+                                        <a href="/mypage/<%=er.user_ing_id%>"><div class="sightseeing">친구취향분석보기</div></a>
+                                    </div>
+                                </div>
+                                
+                            <% end %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!--Follower Modal -->
+            <div class="modal fade" id="FollowerModal" tabindex="-1" role="dialog" aria-labelledby="FollowerModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <img src="/assets/modaldolphin.png" width="40px" height="40px" padding="20px">
+                            <h5 class="modal-title" id="FollowerModalLabel">Follower</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            
+                            <% @following.each do |ing| %>
+                                <div class="row">
+                                    <div class="col-2">
+                                        <img src="/assets/peach.jpg" class="follow_img" alt="팔로잉사진" width="80px" height"80px">
+                                    </div>
+                                    <div class="col-5">
+                                        <div class="follow_id">x.xyuri</div>
+                                        <div class="follow_name"><%= User.find(ing.user_er_id).email %></div>
+                                    </div>
+                                    <div class="col-5">
+                                        <a href="/mypage/<%= ing.user_er_id %>"><div class="sightseeing">친구취향분석보기</div></a>
+                                    </div>
+                                </div>
+                            <% end %>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+          
+             <% if current_user.id != @user.id %>
+                <% if current_user.users.exists?(@user.id) %>
+                    <a href="/unfollowing/<%=current_user.id%>&<%=@user.id%>"><button type="button" class="button_in_mypage_follow"><div class="fbtn">Unfollow this user</div></button></a>
+                <% else %>
+                    <a href="/following/<%=current_user.id%>&<%=@user.id%>"><button type="button" class="button_in_mypage_follow"><div class="fbtn">Follow this user</div></button></a>
+                <% end %>
+            <% end %>
+        </div>
+    </div>
+
+    <div class="lower_nav">
+	    <div class="navbar">
+		    <div class="button2">
+       	        <a class='lower_b1_in_watched' href="/mypage/<%=current_user.id%>" role="button">취향분석</a>
+       	        <a class='lower_b2_in_watched' href="/mypage/<%=current_user.id%>/watched" role="button">봤어요</a>
+       	        <a class='lower_b3_in_watched' href="/mypage/<%=current_user.id%>/wish" role="button">보고싶어요</a>
+       	        <a class='lower_b4_in_watched' href="/mypage/<%=current_user.id%>/comment" role="button">내가 쓴 댓글</a>
+       	    </div>
+         </div>
+    </div>
     
-    // Getter
-    var onSet = $("#webtoon_id" + webtoon_id).rateYo("option", "onSet"); //returns the function
-     
-    // Setter
-    $("#webtoon_id" + webtoon_id).rateYo("option", "onSet", function () {
-        console.log("This is a new function");
-    }); //returns a jQuery Element
-           
-    </script>
     
-    <p><%= Webtoon.find(webtoon.web_id).name %></p>
-    <div id=<%= 'webtoon_id' + webtoon_id.to_s %> data-rateyo-rating='<%=webtoon.rate%>'> </div>
     
-    <!-- 보고싶어요 버튼 -->
-    <a href="/webtoon/wish?user_id=<%=current_user.id%>&web_id=<%=webtoon.id%>">
-    보고싶어요 
-    <% if Wish.exists?(:user_id => current_user.id, :web_id => webtoon.id) %>
-    취소
-    <% end %>
-    버튼
-    </a>
+    <div class="content2">
+        <div class="row">
+            <script>webtoon_id = 1</script>
+            <% webtoon_id = 1 %>
+            <% @user.watcheds.each do |webtoon| %>
+            <script>
+            
+            $(function () {
+                $("#webtoon_id" + webtoon_id++).rateYo({
+                    starWidth: "40px",
+                    halfStar: true,
+                    onSet: function (rating, rateYoInstance) {
+                        // alert("Rating is set to: " + rating);
+                        window.location.href = "/webtoon/save?user_id=<%=current_user.id%>&web_id=<%=webtoon.id%>&rate="+rating;
+                    }
+                });
+            });
+            
+            // Getter
+            var onSet = $("#webtoon_id" + webtoon_id).rateYo("option", "onSet"); //returns the function
+             
+            // Setter
+            $("#webtoon_id" + webtoon_id).rateYo("option", "onSet", function () {
+                console.log("This is a new function");
+            }); //returns a jQuery Element
+                   
+            </script>
+            
+            <% this_webtoon = Webtoon.find(webtoon.web_id) %>
+            <div class="col-3">
+                <div class="card_in_watched">
+                    <img src="<%= this_webtoon.thumbnail %>" class="webtoon_thumbnail" alt="웹툰썸네일" width="200px" height="200px">
+                    <div class="webtoon"><%= this_webtoon.name %></div>
+                    <div class="writer"><%= this_webtoon.writer %></div>
+                    <div class="platform"><%= this_webtoon.platform %></div>
+                    <button type="button" class="btn btn-link btn-lg" data-toggle="modal" data-target="#StarRatingModal<%= this_webtoon.id %>"><div class="StarRatingbtn">별점매기기</div></button>
+                    <!--Following Modal -->
+                    
+                    
+                    <div class="modal fade" id="StarRatingModal<%= this_webtoon.id %>" tabindex="-1" role="dialog" aria-labelledby="StarRatingModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="StarRatingModalLabel"><div class="average_title">평균별점 <div class="averageScore">4.23</div></div></h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <img src="<%= this_webtoon.thumbnail %>" width="300px" height="300px">
+                                    <div class="webtoon_name_modal"><%= this_webtoon.name %></div>
+                                    <div class="row">
+                                            <div class="rating_friends1">
+                                            <div class="col-8">
+                                            
+                                            <div id=<%= 'webtoon_id' + webtoon_id.to_s %> class="starInWatched" data-rateyo-rating='<%=webtoon.rate%>'> </div>
+                                            </div>
+                                            </div>
+                                            <div class="col-4">
+                                                <div class="rating_friends2">
+                                                    <% if Wish.exists?(:user_id => current_user.id, :web_id => this_webtoon.id) %>
+                                                        <a href="/webtoon/wish?user_id=<%=current_user.id%>&web_id=<%=this_webtoon.id%>">
+                                                        <img src="/assets/fullheart.png" width="30px" height="30px">보고싶어요</a>
+                                                    <% else %> 
+                                                        <a href="/webtoon/wish?user_id=<%=current_user.id%>&web_id=<%=this_webtoon.id%>">
+                                                        <img src="/assets/heart.png" width="30px" height="30px">보고싶어요</a>
+                                                    <% end %>
+                                                </div>
+                                            </div>
+                                    </div>
+                                    <div class="content4">
+                                        <form action="/comment/<%=current_user.id%>&<%=this_webtoon.id%>">
+                                            <div class="row">
+                                                <div class="col-9">
+                                                    <input type="text" name="comment" class="form-control" placeholder="내용 입력">
+                                                </div>
+                                                <div class="col-3">
+                                                    <button type="submit" class="btn btn-primary">댓글달기</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <% webtoon_id += 1%>
+            <% end %>
+        </div>
+    </div>
     
-    <% webtoon_id += 1%>
-<% end %>
+</body>
+</div>

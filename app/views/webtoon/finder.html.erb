@@ -29,53 +29,77 @@ Webtoon.where 문으로 선택된 장르가 있는 것들 찾아놨는데
 <script>webtoon_id = 1</script>
 <% webtoon_id = 1 %>
 
-<h1>Webtoon#finder</h1>
-
 <!-- 장르, 플랫폼 등 필터링 -->
 <form action="/finder">
-    <table border="1">
-        <tr>
-            <td style="width: 200px">
-                <input type="checkbox" name="genre[]" value="판타지" /> 판타지 <br>
-                <input type="checkbox" name="genre[]" value="액션" /> 액션 <br>
-                <input type="checkbox" name="genre[]" value="일상" /> 일상 <br>
-                <input type="checkbox" name="genre[]" value="개그" /> 개그 <br>
-                <input type="checkbox" name="genre[]" value="드라마" /> 드라마
-            </td>
-            <td style="width: 200px">
-                <input type="checkbox" name="tag[]" value="먼치킨" /> 먼치킨 <br>
-                <input type="checkbox" name="tag[]" value="동양풍" /> 동양풍 <br>
-                <input type="checkbox" name="tag[]" value="멘붕" /> 멘붕 <br>
-                <input type="checkbox" name="tag[]" value="가족" /> 가족 <br>
-                <input type="checkbox" name="tag[]" value="따뜻" /> 따뜻 <br>
-                <input type="checkbox" name="tag[]" value="잔인" /> 잔인 <br>
-                <input type="checkbox" name="tag[]" value="패션" /> 패션 <br>
-                <input type="checkbox" name="tag[]" value="우주" /> 우주 <br>
-                <input type="checkbox" name="tag[]" value="연예인" /> 연예인 <br>
-                <input type="checkbox" name="tag[]" value="주체적 여성" /> 주체적 여성 <br>
-                <input type="checkbox" name="tag[]" value="여장 남자" /> 여장 남자 <br>
-                <input type="checkbox" name="tag[]" value="외모지상주의" /> 외모지상주의 <br>
-                <input type="checkbox" name="tag[]" value="무거움" /> 무거움 <br>
-                <input type="checkbox" name="tag[]" value="이세계" /> 이세계 <br>
-                <input type="checkbox" name="tag[]" value="얀데레" /> 얀데레 <br>
-                <input type="checkbox" name="tag[]" value="뱀파이어" /> 뱀파이어 <br>
-                <input type="checkbox" name="tag[]" value="회사" /> 회사 <br>
-                <input type="checkbox" name="tag[]" value="대학교" /> 대학교 <br>
-                <input type="checkbox" name="tag[]" value="범죄" /> 범좌 <br>
-                <input type="checkbox" name="tag[]" value="사랑과 우정사이" /> 사랑과 우정사이 <br>
-                <input type="checkbox" name="tag[]" value="소꿉친구" /> 소꿉친구 <br>
-            </td>
-            <td style="width: 200px">
-                <input type="checkbox" name="platform[]" value="네이버" /> 네이버 <br>
-                <input type="checkbox" name="platform[]" value="다음" /> 다음 <br>
-            </td>
-        </tr>
-        <tr>
-            <td>
+<div class="container1">
+  
+<div id="f1">
+    <h3> 작품 찾기 </h3>
+    
+    <div id="row1">
+        <div class="row">
+            
+            <div class="col-4">  
+                <div class="items">
+                    <p class="i1">장르</p>
+                    <ul>
+                        <li><input type="checkbox" name="genre[]" value="판타지" /> 판타지 </li>
+                        <li><input type="checkbox" name="genre[]" value="액션" /> 액션 </li>
+                        <li><input type="checkbox" name="genre[]" value="일상" /> 일상  </li>
+                        <li><input type="checkbox" name="genre[]" value="개그" /> 개그  </li>
+                        <li><input type="checkbox" name="genre[]" value="드라마" /> 드라마 </li>
+                    </ul>
+                </div>
+            </div>
+                
+            <div class="col-4">    
+                <div class="items">
+                    <p class="i1">플랫폼</p>
+                    <ul>
+                        <li><input type="checkbox" name="platform[]" value="네이버" /> 네이버 </li>
+                        <li><input type="checkbox" name="platform[]" value="다음" /> 다음</li>
+                    </ul>
+                </div>
+            </div>
+    
+            <div class="col-4">
+                <div class="items">
+                    <p class="i1">태그</p>
+                    <ul>
+                        <li><input type="checkbox" name="tag[]" value="먼치킨" /> 먼치킨 </li>
+                        <li><input type="checkbox" name="tag[]" value="동양풍" /> 동양풍</li>
+                        <li><input type="checkbox" name="tag[]" value="멘붕" /> 멘붕 </li>
+                        <li><input type="checkbox" name="tag[]" value="가족" /> 가족</li>
+                        <li><input type="checkbox" name="tag[]" value="따뜻" /> 따뜻</li>
+                        <li><input type="checkbox" name="tag[]" value="잔인" /> 잔인 </li>
+                        <li><input type="checkbox" name="tag[]" value="패션" /> 패션</li>
+                        <li><input type="checkbox" name="tag[]" value="우주" /> 우주</li>
+                        <li><input type="checkbox" name="tag[]" value="연예인" /> 연예인</li> 
+                        <li><input type="checkbox" name="tag[]" value="주체적 여성" /> 주체적 여성</li>  
+                        <li><input type="checkbox" name="tag[]" value="여장 남자" /> 여장 남자 </li>  
+                        <li><input type="checkbox" name="tag[]" value="외모지상주의" /> 외모지상주의  </li>
+                        <li><input type="checkbox" name="tag[]" value="무거움" /> 무거움  </li>
+                        <li><input type="checkbox" name="tag[]" value="이세계" /> 이세계  </li>
+                        <li><input type="checkbox" name="tag[]" value="얀데레" /> 얀데레  </li>
+                        <li><input type="checkbox" name="tag[]" value="뱀파이어" /> 뱀파이어  </li>
+                        <li><input type="checkbox" name="tag[]" value="회사" /> 회사  </li>
+                        <li><input type="checkbox" name="tag[]" value="대학교" /> 대학교 </li>
+                        <li><input type="checkbox" name="tag[]" value="범죄" /> 범좌  </li>
+                        <li><input type="checkbox" name="tag[]" value="사랑과 우정사이" /> 사랑과 우정사이  </li>
+                        <li>    <input type="checkbox" name="tag[]" value="소꿉친구" /> 소꿉친구  </li>
+                    </ul>
+                </div>
+            </div>
+    
+            <div class="fb">
                 <input type="submit" value="선택">
-            </td>
-        </tr>
-    </table>
+            </div>
+    
+        </div> 
+    </div>
+
+</div>
+</div>
 </form>
 
 <% @webtoons.each do |webtoon| %>

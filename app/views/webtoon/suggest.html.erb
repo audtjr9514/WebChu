@@ -1,6 +1,47 @@
-<h1>Webtoon#suggest</h1>
-
-
-<p>영화 추천</p>
-<% @mps %>
-
+<div id="test">
+<body>
+     <link rel="stylesheet" type="text/css" href="webtoon.css">
+     <!--nav와 콘텐츠 사이의 틈-->
+     	<div class="q4"></div>
+    <div class="container1">
+        <div class="t6">
+        <h2>오타쿠 양성</h2>
+        </div>
+        <!--카드1(이런 애니 어때?)-->
+        <div class="o1">
+            <section>
+                <p class="m1">이런 애니 어때?</p>
+                <p class="m2"><%= @mp_annimation.intro %></p>
+                <div class="img2">
+                <img src="<%= @mp_annimation.thumbnail %>" width="350px" height="300px">
+                <h3 class="o1_t1"><%= @mp_annimation.name %></h3>
+                </div>
+            </section>
+        </div>
+        <!--카드2(이런 만화 어떄?)-->
+          <div class="o1">
+            <section>
+                <p class="m3">이런 만화 어때?</p>
+                <p class="m4"><%= @mp_comic.intro %></p>
+                <div class="img3">
+                <img src="<%= @mp_comic.thumbnail %>" width="350px" height="300px">
+                <h3 class="o1_t1"><%= @mp_comic.name %></h3>
+                </div>
+            </section>
+        </div>
+        <!--카드3(이런 영화 어때?)-->
+        <div class="o2">
+            <section>
+                <p class="m1">이런 영화 어때?</p>
+                <p class="m2"><%= @mp_movie.intro %></p>
+                <div class="img2">
+                <img src="<%= @mp_movie.thumbnail %>" width="350px" height="300px">
+                <h3 class="o1_t1"><%= @mp_movie.name %></h3>
+                </div>
+            </section>
+        </div>
+        <!--footer와 콘텐츠 사이의 틈-->
+       	<div class="q3"></div>
+        </div>
+</body>
+</div>
