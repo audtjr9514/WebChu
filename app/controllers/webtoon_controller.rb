@@ -20,12 +20,17 @@ class WebtoonController < ApplicationController
     @tag = favorite_tag.sample(1)
     @webtoons = Array.new
     
-    
-    @tag[0].webtoons.each do |webtoon|
-      # 본 웹툰은 추천하지 않게 작동하기 위하여
-      if Watched.exists?(:user_id => @user.id, :web_id => webtoon.id)
-      else
-        @webtoons << webtoon
+    if @tag[0] == nil
+      @webtoons << Webtoon.find(1)
+      @webtoons << Webtoon.find(2)
+      @webtoons << Webtoon.find(3)
+    else
+      @tag[0].webtoons.each do |webtoon|
+        # 본 웹툰은 추천하지 않게 작동하기 위하여
+        if Watched.exists?(:user_id => @user.id, :web_id => webtoon.id)
+        else
+          @webtoons << webtoon
+        end
       end
     end
     
@@ -80,7 +85,7 @@ class WebtoonController < ApplicationController
     elsif(params[:genre] != nil) && (params[:tag] == nil) && (params[:platform] != nil) # 장르 & 플랫폼 체크
       @webtoons = Webtoon.where({ genre: params[:genre], platform: params[:platform] })
    
-     # 태그 & 플랫폼 체크
+    elsif(params[:genre] == nil) && (params[:tag] != nil) && (params[:platform] != nil) # 태그 & 플랫폼 체크
       arr = Array.new
       params[:tag].each do |tag|
         t = Tag.find_by name: tag
@@ -144,10 +149,14 @@ class WebtoonController < ApplicationController
     # 웹툰을 저장 시 이미 저장했던 웹툰일 때 
     if Watched.exists?(:user_id => user_id, :web_id => webtoon_id)
       w = Watched.find_by(:user_id => user_id, :web_id => webtoon_id)
-      w.user_id = user_id
-      w.web_id = webtoon_id
-      w.rate = rate
-      w.save
+      if rate.to_f < 0.4
+        w.destroy
+      else
+        w.user_id = user_id
+        w.web_id = webtoon_id
+        w.rate = rate
+        w.save
+      end
     else
       w = Watched.new
       w.user_id = user_id

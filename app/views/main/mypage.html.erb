@@ -40,10 +40,10 @@
                                         <img src="/assets/peach.png" class="follow_img" alt="팔로우사진" width="80px" height"80px">
                                     </div>
                                     <div class="col-5">
-                                        <div class="follow_id">x.xyuri</div>
                                         <div class="follow_name"><%= User.find(er.user_ing_id).email %></div>
                                     </div>
                                     <div class="col-5">
+                                        <div class="follow_id"></div>
                                         <a href="/mypage/<%=er.user_ing_id%>"><div class="sightseeing">친구취향분석보기</div></a>
                                     </div>
                                 </div>
@@ -69,10 +69,10 @@
                             <% @following.each do |ing| %>
                                 <div class="row">
                                     <div class="col-2">
-                                        <img src="/assets/peach.jpg" class="follow_img" alt="팔로잉사진" width="80px" height"80px">
+                                        <img src="/assets/peach.png" class="follow_img" alt="팔로잉사진" width="80px" height"80px">
                                     </div>
                                     <div class="col-5">
-                                        <div class="follow_id">x.xyuri</div>
+                                        <div class="follow_id"></div>
                                         <div class="follow_name"><%= User.find(ing.user_er_id).email %></div>
                                     </div>
                                     <div class="col-5">
@@ -99,10 +99,10 @@
     <div class="lower_nav">
 	    <div class="navbar">
 		    <div class="button2">
-       	        <a class='lower_b1_in_analysis' href="/mypage/<%=current_user.id%>" role="button">취향분석</a>
-       	        <a class='lower_b2_in_analysis' href="/mypage/<%=current_user.id%>/watched">봤어요</a>
-       	        <a class='lower_b3_in_analysis' href="/mypage/<%=current_user.id%>/wish">보고싶어요</a>
-       	        <a class='lower_b4_in_analysis' href="/mypage/<%=current_user.id%>/comment" role="button">내가 쓴 댓글</a>
+       	        <a class='lower_b1_in_analysis' href="/mypage/<%=@user.id%>" role="button">취향분석</a>
+       	        <a class='lower_b2_in_analysis' href="/mypage/<%=@user.id%>/watched">봤어요</a>
+       	        <a class='lower_b3_in_analysis' href="/mypage/<%=@user.id%>/wish">보고싶어요</a>
+       	        <a class='lower_b4_in_analysis' href="/mypage/<%=@user.id%>/comment" role="button">내가 쓴 댓글</a>
        	    </div>
          </div>
     </div>
@@ -115,10 +115,21 @@
                 <!-- 봤던 작품들 -->
                 <div class="card">
                     <div class="card-body">
-                        <div class="card-title">이정도면 웹툰 마니아 2등급은 될거에요!</div>
+                        <% if @user.watcheds.length == 0 %>
+                        <div class="card-title">아직도 웹툰 안보세요?</div>
+                        <% elsif @user.watcheds.length < 5%>
+                        <div class="card-title">아직 신생아! 명작 웹툰부터 정주행해봐요~</div>
+                        <% elsif @user.watcheds.length < 10%>
+                        <div class="card-title">아직 멀었어요!!</div>
+                        <% elsif @user.watcheds.length < 15%>
+                        <div class="card-title">유명한건 좀 보셨네요?</div>
+                        <% elsif @user.watcheds.length < 20%>
+                        <div class="card-title">어디가서 꿀리진 않겠어요!></div>
+                        <% end %>
+                        
                         <div class="card-text1">
                             <div class="label">봤던 작품 수</div>
-                            <div class="stat-count"><%= current_user.watcheds.length %></div>
+                            <div class="stat-count"><%= @user.watcheds.length %></div>
                         </div>
                     </div>
                 </div>
@@ -127,7 +138,29 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="card-title">별점분포</div>
-                        <div class="card-subtitle mb-2 text-muted">대중의 평가에 휘둘리지 않는 지조파</div>
+                        <% if @my_starrate.keys[0] == 5.0 %>
+                        <div class="card-subtitle mb-2 text-muted">명작만 보셨나봐요!</div>
+                        <% elsif @my_starrate.keys[0] == 4.5 %>
+                        <div class="card-subtitle mb-2 text-muted">웹툰을 편식하시는군요!</div>
+                        <% elsif @my_starrate.keys[0] == 4.0 %>
+                        <div class="card-subtitle mb-2 text-muted">웹툰이 삶의 활력소이시죠?</div>
+                        <% elsif @my_starrate.keys[0] == 3.5 %>
+                        <div class="card-subtitle mb-2 text-muted">편식없이 골고루보는 균형파</div>
+                        <% elsif @my_starrate.keys[0] == 3.0 %>
+                        <div class="card-subtitle mb-2 text-muted">조금은 더 후해도 될거같아요!</div>
+                        <% elsif @my_starrate.keys[0] == 2.5 %>
+                        <div class="card-subtitle mb-2 text-muted">비판적으로 보시는군요!</div>
+                        <% elsif @my_starrate.keys[0] == 2.0 %>
+                        <div class="card-subtitle mb-2 text-muted">'야박하다'라는 뜻 아세요?</div>
+                        <% elsif @my_starrate.keys[0] == 1.5 %>
+                        <div class="card-subtitle mb-2 text-muted">아몰랑</div>
+                        <% elsif @my_starrate.keys[0] == 1.0 %>
+                        <div class="card-subtitle mb-2 text-muted">명작을 찾아보시는건 어떠세요?</div>
+                        <% elsif @my_starrate.keys[0] == 0.5 %>
+                        <div class="card-subtitle mb-2 text-muted">재미없는 것만 골라보셨나요??</div>
+                        <% end %>
+                        
+                        
                         <div class="distribution">
                             <svg viewBox="0 0 550 150" class="chart">
                               <!-- 
@@ -240,11 +273,11 @@
                         <% if @my_writer.keys[0] != nil %>
                         <div class="row">
                             <div class="col-5">
-                                <img src="/assets/peach.png" alt="대표사진" class="representative_img" width="170px" height="150px">
+                                <img src="<%= Webtoon.find_by(writer: @my_writer.keys[0]).thumbnail %>" alt="대표사진" class="representative_img" width="170px" height="150px">
                             </div>
                             <div class="col-7">
                                 <div class="writer_name"><%= @my_writer.keys[0] %></div>
-                                <div class="representative_title">딱숭아인가 물숭아인가?</div>
+                                <div class="representative_title">위 작가의 작품 <%= @my_writer.values[0] %>개 보셨어요</div>
                             </div>
                          </div>
                          <% end %>
@@ -252,11 +285,11 @@
                         <% if @my_writer.keys[1] != nil %>
                         <div class="row">
                             <div class="col-5">
-                                <img src="/assets/peach.png" alt="대표사진" class="representative_img" width="170px" height="150px">
+                                <img src="<%= Webtoon.find_by(writer: @my_writer.keys[1]).thumbnail %>" alt="대표사진" class="representative_img" width="170px" height="150px">
                             </div>
                             <div class="col-7">
                                 <div class="writer_name"><%= @my_writer.keys[1] %></div>
-                                <div class="representative_title">딱숭아인가 물숭아인가?</div>
+                                <div class="representative_title">위 작가의 작품 <%= @my_writer.values[1] %>개 보셨어요</div>
                             </div>
                          </div>
                         <% end %>
@@ -264,26 +297,15 @@
                         <% if @my_writer.keys[2] != nil %>
                         <div class="row">
                             <div class="col-5">
-                                <img src="/assets/peach.png" alt="대표사진" class="representative_img" width="170px" height="150px">
+                                <img src="<%= Webtoon.find_by(writer: @my_writer.keys[2]).thumbnail %>" alt="대표사진" class="representative_img" width="170px" height="150px">
                             </div>
                             <div class="col-7">
                                 <div class="writer_name"><%= @my_writer.keys[2] %></div>
-                                <div class="representative_title">딱숭아인가 물숭아인가?</div>
+                                <div class="representative_title">위 작가의 작품 <%= @my_writer.values[2] %>개 보셨어요</div>
                             </div>
                          </div>
                          <% end %>
                          
-                         <% if @my_writer.keys[3] != nil %>
-                         <div class="row">
-                            <div class="col-5">
-                                <img src="/assets/peach.png" alt="대표사진" class="representative_img" width="170px" height="150px">
-                            </div>
-                            <div class="col-7">
-                                <div class="writer_name"><%= @my_writer.keys[3] %></div>
-                                <div class="representative_title">딱숭아인가 물숭아인가?</div>
-                            </div>
-                         </div>
-                         <% end %>
                     </div>
                 </div>
                 
@@ -298,17 +320,13 @@
                         <p class="card-subtitle">네이버 작품을 재밌게 보셨어요</p>
                             <div class="charts">
                                 
+                                <% @my_platform.each do |key, value| %>
                                 <div class="row">
-                                    <div class="col-3"><div class="platform">네이버</div></div>
-                                    <div class="col-6"><div class="charts__chart" style="width: 100%"></div></div>
-                                    <div class="col-3"><div class="platform-percent">67%</div></div>
+                                    <div class="col-3"><div class="platform"><%= key %></div></div>
+                                    <div class="col-6"><div class="charts__chart" style="width: <%= value %>%"></div></div>
+                                    <div class="col-3"><div class="platform-percent"><%= value %>%</div></div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-3"><div class="platform">다음</div></div>
-                                    <div class="col-6"><div class="charts__chart" style="width: 33%"></div></div>
-                                    <div class="col-3"><div class="platform-percent">33%</div></div>
-                                </div>
-                                
+                                <% end %>
                             </div>
                     </div>
                 </div>
@@ -343,10 +361,34 @@
                                 +)참고한 페이지
                                 https://medium.com/@heyoka/scratch-made-svg-donut-pie-charts-in-html5-2c587e935d72
                                 -->
+                                  
+                                  <% if @my_genre.length == 0 %>
+                                  
+                                  <% elsif @my_genre.length == 1 %>
+                                      <circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#FFDE9E" stroke-width="3" 
+                                      stroke-dasharray="0 0" stroke-dashoffset="100"></circle>
+                                  <% elsif @my_genre.length == 2 %>
+                                      <circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#FFDE9E" stroke-width="3" 
+                                      stroke-dasharray="40 60" stroke-dashoffset="70"></circle>
+                                      
+                                      <circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#A1C5FF" stroke-width="3" 
+                                      stroke-dasharray="60 40" stroke-dashoffset="130"></circle>
+                                      
+                                      
+                                  <% else %>
+                                      <circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#FFDE9E" stroke-width="3" 
+                                      stroke-dasharray="40 60" stroke-dashoffset="70"></circle>
+                                      
+                                      <circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#A1C5FF" stroke-width="3" 
+                                      stroke-dasharray="30 70" stroke-dashoffset="130"></circle>
+                                      
+                                      <circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#FFDEFC" stroke-width="3" 
+                                      stroke-dasharray="20 80" stroke-dashoffset="100"></circle>
+                                  <% end %>
+                                  
                                 
-                                  <circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#FFDE9E" stroke-width="3" stroke-dasharray="40 60" stroke-dashoffset="70"></circle>
-                                  <circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#A1C5FF" stroke-width="3" stroke-dasharray="30 70" stroke-dashoffset="130"></circle>
-                                  <circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#FFDEFC" stroke-width="3" stroke-dasharray="20 80" stroke-dashoffset="100"></circle>
+                                  
+                                  
                                   <!-- unused 10% -->
                                 </svg>
                                 <img src="/assets/avatar.png" class="genre-card-img" alt="인물" width="100px">
@@ -354,21 +396,47 @@
                             
                             <div class="genre-icon">
                                 <div class="row">
-                                  <div class="col-4">
-                                      <div class="genre-icon1"></div>
-                                      <div class="genre-name">로맨스</div>
-                                      <div class="genre-score-average">78점/9작품</div>
-                                  </div>
-                                  <div class="col-4">
-                                      <div class="genre-icon2"></div>
-                                      <div class="genre-name">판타지</div>
-                                      <div class="genre-score-average">77점/5작품</div>
-                                  </div>
-                                  <div class="col-4">
-                                      <div class="genre-icon3"></div>
-                                      <div class="genre-name">동양풍</div>
-                                      <div class="genre-score-average">68점/4작품</div>
-                                  </div>
+                                    <% if @my_genre.length == 0 %>
+                                    <% elsif @my_genre.length == 1 %>
+                                        <div class="col-4">
+                                        </div>
+                                        <div class="col-4">
+                                          <div class="genre-icon1"></div>
+                                          <div class="genre-name"><%= @my_genre.keys[0] %></div>
+                                          <div class="genre-score-average"><%= @my_genre.values[0] %></div>
+                                        </div>
+                                        <div class="col-4">
+                                        </div>
+                                    <% elsif @my_genre.length == 2 %>
+                                        <div class="col-2"></div>
+                                        <div class="col-4">
+                                          <div class="genre-icon1"></div>
+                                          <div class="genre-name"><%= @my_genre.keys[0] %></div>
+                                          <div class="genre-score-average"><%= @my_genre.values[0] %>작품</div>
+                                        </div>
+                                        <div class="col-4">
+                                          <div class="genre-icon2"></div>
+                                          <div class="genre-name"><%= @my_genre.keys[1] %></div>
+                                          <div class="genre-score-average"><%= @my_genre.values[1] %>작품</div>
+                                        </div>
+                                        <div class="col-2"></div>
+                                    <% else %>
+                                        <div class="col-4">
+                                          <div class="genre-icon1"></div>
+                                          <div class="genre-name"><%= @my_genre.keys[0] %></div>
+                                          <div class="genre-score-average"><%= @my_genre.values[0] %>작품</div>
+                                        </div>
+                                        <div class="col-4">
+                                          <div class="genre-icon2"></div>
+                                          <div class="genre-name"><%= @my_genre.keys[1] %></div>
+                                          <div class="genre-score-average"><%= @my_genre.values[1] %>작품</div>
+                                        </div>
+                                        <div class="col-4">
+                                          <div class="genre-icon3"></div>
+                                          <div class="genre-name"><%= @my_genre.keys[2] %></div>
+                                          <div class="genre-score-average"><%= @my_genre.values[2] %>작품</div>
+                                        </div>
+                                    <% end %>
                                 </div>                                
                             </div>
                         
@@ -381,16 +449,20 @@
                         <div class="card-title">웹툰선호태그</div>
                         <div class="card-subtitle">인생은 역시 한 편의 드라마!</div>
                         <div class="prefer_tag" id="favorite-keywords">
-                            <span class="w-1" style="position: absolute; left: 150.445px; top: 76.5px;">로맨스</span>
-                            <span class="w-3" style="position: absolute; left: 160.445px; top: 130.186px;">하이틴</span>
-                            <span class="w-3" style="position: absolute; left: 49.3354px; top: 78.4979px;">학원물</span>
-                            <span class="w-2" style="position: absolute; left: 260.251px; top: 120.6975px;">사랑</span>
-                            <span class="w-1" style="position: absolute; left: 44.3562px; top: 109.7786px;">첫사랑</span>
-                            <span class="w-1" style="position: absolute; left: 261.175px; top: 55.0238px;">드라마</span>
-                            <span class="w-1" style="position: absolute; left: 205.555px; top: 160.289px;">왕위</span>
-                            <span class="w-2" style="position: absolute; left: 177.08px; top: 25.662px;">판타지</span>
-                            <span class="w-3" style="position: absolute; left: 100.907px; top: 160.172px;">OST</span>
-                            <span class="w-2" style="position: absolute; left: 95.5593px; top: 35.9766px;">웃긴</span>
+                            
+                            <span class="w-1" style="position: absolute; left: 150.445px; top: 76.5px;"> <%= @my_tag.keys[0] %> </span>
+                            <span class="w-1" style="position: absolute; left: 44.3562px; top: 109.7786px;"><%= @my_tag.keys[1] %></span>
+                            <span class="w-1" style="position: absolute; left: 261.175px; top: 55.0238px;"><%= @my_tag.keys[2] %></span>
+                            <span class="w-1" style="position: absolute; left: 205.555px; top: 160.289px;"><%= @my_tag.keys[3] %></span>
+                            
+                            <span class="w-2" style="position: absolute; left: 65.5593px; top: 35.9766px;"><%= @my_tag.keys[4] %></span>
+                            <span class="w-2" style="position: absolute; left: 230.251px; top: 120.6975px;"><%= @my_tag.keys[5] %></span>
+                            <span class="w-2" style="position: absolute; left: 177.08px; top: 25.662px;"><%= @my_tag.keys[6] %></span>
+                            
+                            <span class="w-3" style="position: absolute; left: 100.907px; top: 160.172px;"><%= @my_tag.keys[7] %></span>
+                            <span class="w-3" style="position: absolute; left: 160.445px; top: 130.186px;"><%= @my_tag.keys[8] %></span>
+                            <span class="w-3" style="position: absolute; left: 49.3354px; top: 78.4979px;"><%= @my_tag.keys[9] %></span>
+                            
                         </div>
                     </div>
                 </div>
@@ -402,16 +474,3 @@
 
 </body>
 </div>
-
-<hr>
-<h4>선호하는 플랫폼</h4>
-<%= @my_platform %>
-<h4>별점분포</h4>
-<%= @my_starrate %>
-
-<h4>선호하는 장르</h4>
-<%= @my_genre %>
-<h4>선호하는 작가</h4>
-<%= @my_writer %>
-<h4>선호하는 태그</h4>
-<%= @my_tag %>

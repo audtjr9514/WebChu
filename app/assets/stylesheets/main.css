@@ -50,9 +50,10 @@
 	margin-top: 20px;
 	font-size: 20px;
 	color: white;
-	 border-color: #529AFF;
+	 border-color:  #80B8FF;
 	border-style: solid;
-	background-color: #529AFF;
+	background-color: #80B8FF;
+	border-radius: 0px 20px 0px 20px;
     border-width: 2px;
     padding-left: 5px;
     padding-top: 5px;
@@ -109,4 +110,47 @@
 	float: right;
 	padding-top: 30px;
 	margin-right: 110px;
+}
+
+.caption-title{
+	font-size: 35px;
+	font-family: 'GoyangIlsan';
+	text-shadow: 2px, 2px, black;
+	color: #F7A3BA;
+}
+
+.caption-content{
+	font-size: 17px;
+}
+
+.carousel-caption{
+	bottom: 35px !important;
+}
+
+.main-section-img{
+	border-radius: 10px;
+}
+
+.content8{
+	width: 1200px;
+	margin: auto !important;
+	text-align: center;
+	padding-bottom: 40px;
+	padding-top: 30px;
+}
+
+.finder-card{
+	margin-top: 20px;
+	padding: 10px;
+	font-size: 21px;
+	font-family: 'NanumSquareRound';
+}
+
+.webname{
+	margin-top: 10px;
+	color: #434343;
+}
+
+.finder-main-thum{
+	border-radius: 10px;
 }

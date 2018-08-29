@@ -33,7 +33,7 @@
                                         <img src="/assets/peach.png" class="follow_img" alt="팔로우사진" width="80px" height"80px">
                                     </div>
                                     <div class="col-5">
-                                        <div class="follow_id">x.xyuri</div>
+                                        <div class="follow_id"></div>
                                         <div class="follow_name"><%= User.find(er.user_ing_id).email %></div>
                                     </div>
                                     <div class="col-5">
@@ -63,10 +63,10 @@
                             <% @following.each do |ing| %>
                                 <div class="row">
                                     <div class="col-2">
-                                        <img src="/assets/peach.jpg" class="follow_img" alt="팔로잉사진" width="80px" height"80px">
+                                        <img src="/assets/peach.png" class="follow_img" alt="팔로잉사진" width="80px" height"80px">
                                     </div>
                                     <div class="col-5">
-                                        <div class="follow_id">x.xyuri</div>
+                                        <div class="follow_id"></div>
                                         <div class="follow_name"><%= User.find(ing.user_er_id).email %></div>
                                     </div>
                                     <div class="col-5">
@@ -93,10 +93,10 @@
     <div class="lower_nav">
 	    <div class="navbar">
 		    <div class="button2">
-       	        <a class='lower_b1_in_comment' href="/mypage/<%=current_user.id%>" role="button">취향분석</a>
-       	        <a class='lower_b2_in_comment' href="/mypage/<%=current_user.id%>/watched" role="button">봤어요</a>
-       	        <a class='lower_b3_in_comment' href="/mypage/<%=current_user.id%>/wish" role="button">보고싶어요</a>
-       	        <a class='lower_b4_in_comment' href="/mypage/<%=current_user.id%>/comment" role="button">내가 쓴 댓글</a>
+       	        <a class='lower_b1_in_comment' href="/mypage/<%=@user.id%>" role="button">취향분석</a>
+       	        <a class='lower_b2_in_comment' href="/mypage/<%=@user.id%>/watched" role="button">봤어요</a>
+       	        <a class='lower_b3_in_comment' href="/mypage/<%=@user.id%>/wish" role="button">보고싶어요</a>
+       	        <a class='lower_b4_in_comment' href="/mypage/<%=@user.id%>/comment" role="button">내가 쓴 댓글</a>
        	    </div>
          </div>
     </div>
@@ -106,6 +106,7 @@
     <script>webtoon_id = 1</script>
     <% webtoon_id = 1 %>
     <% @user.comments.each do |webtoon| %>
+    <% this_webtoon = Webtoon.find(webtoon.webtoon_id)%>
     <script>
     
     $(function () {
@@ -114,7 +115,7 @@
             halfStar: true,
             onSet: function (rating, rateYoInstance) {
                 // alert("Rating is set to: " + rating);
-                window.location.href = "/webtoon/save?user_id=<%=current_user.id%>&web_id=<%=webtoon.id%>&rate="+rating;
+                window.location.href = "/webtoon/save?user_id=<%=current_user.id%>&web_id=<%=this_webtoon.id%>&rate="+rating;
             }
         });
     });
@@ -129,7 +130,7 @@
            
     </script>
     
-    <% this_webtoon = Webtoon.find(webtoon.webtoon_id)%>
+    
     <div class="content3">
         <div class="row">
             <div class="col-4">

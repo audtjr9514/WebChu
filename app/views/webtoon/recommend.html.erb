@@ -54,7 +54,12 @@
                     
                     <!--카드내용-->
                     <div class="webtoon_comment1"><%= webtoon.name %></div>
-                    <div class="comment_body">#일상,#학원,#우정<br>
+                    <div class="comment_body">
+                        <% webtoon.tags.each do |tag| %>
+                        #<%= tag.name %>
+                        <% end %>
+                    
+                    <br>
                     <br><%= webtoon.intro %>
                     
                     <div class="heart">
@@ -66,8 +71,7 @@
                             <img src="/assets/heart.png" width="30px" height="30px">보고싶어요</a>
                         <% end %>
                     </div>
-                    
-                    <br> 소소한 학교 일상이야기 </div>    
+                    </div>    
                  
                  <!--댓글창-->
                   <form action="/comment/<%=current_user.id%>&<%=webtoon.id%>">

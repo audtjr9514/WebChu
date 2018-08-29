@@ -60,7 +60,14 @@ class MainController < ApplicationController
       
     end
     
-    @my_platform = platform
+    @my_platform = platform.sort_by {|_key, value| value}.reverse.to_h
+    # {"네이버"=>1, "다음"=>1}
+    
+    
+    @my_platform.each do |key, value|
+      @my_platform[key] = (value.to_f / @user.watcheds.length * 100).round
+    end
+    
     @my_starrate = starrate
     
     @my_starrate = starrate.sort_by {|_key, value| value}.reverse.to_h
@@ -75,12 +82,14 @@ class MainController < ApplicationController
       @aver += (key * value)
     end
     if @my_starrate.length > 0
-      @my_star_aver = @aver / @my_starrate.length
+      @my_star_aver = @aver / @user.watcheds.length
     end
     
     @my_genre = genre
     @my_writer = writer.sort_by {|_key, value| value}.reverse.to_h
-    @my_tag = tag
+    
+    @my_tag = tag.sort_by {|_key, value| value}.reverse.to_h
+    
   end
   
   def mypage_watched

@@ -426,6 +426,7 @@
 .follow_name{
 	text-align: center;
 	color: #434343;
+	padding: 10px;
 }
 
 .follow_img{
@@ -494,6 +495,7 @@
 	margin-right: 20px !important;
 	text-align: left;
 	margin-top: 8px;
+	font-size: 20px;
 }
 
 .prefer_tag{
@@ -633,4 +635,13 @@
 .user-state{
 	position: absolute;
 	padding-bottom: 20px;
+}
+
+.miss{
+	font-size: 15px;
+}
+
+.main-name{
+	font-size: 20.2px;
+	text-align: center;
 }

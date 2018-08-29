@@ -1,36 +1,10 @@
-<!--
-To. 명석이 형
-제가 플랫폼 장르 태그들 들어갈 테이블 form 태그 안에 넣어놨어요
-일단 장르는 네임을 genre[] 이렇게 하면 genre["액션", "판타지"]
-이렇게 들어갑니다...
-
-이제 태그들이랑 플랫폼도 이렇게 하시면 .. 될거같아요
-
-형이 해야하실 건 
-routes.rb 파일에
-/finder/:genre => webtoon#finder 이렇게 연결한거처럼
-/:플랫폼 => 
-/:태그 =>
-
-이렇게 연결해야되는데
-
-아마 장르랑 플랫폼 선택 했을 때,
-장르랑 태그 선택 했을 때,
-플랫폼이랑 태그 선택 했을 때,
-장르 플랫폼 태그 다 선택 했을 때 같이
-모든 경우의 수를 routes.rb에 써야되지 않을까 .. 싶어요
-
-그리고 컨트롤러 보시면
-Webtoon.where 문으로 선택된 장르가 있는 것들 찾아놨는데
-장르 플랫폼 태그 중에 2개 이상 선택했을 때는 어떻게 할 지 ,,,,
-
-내일 봬요 형,,,,
--->
 <script>webtoon_id = 1</script>
 <% webtoon_id = 1 %>
 
 <!-- 장르, 플랫폼 등 필터링 -->
+<link rel="stylesheet" type="text/css" href="webtoon.css">
 <form action="/finder">
+    
 <div class="container1">
   
 <div id="f1">
@@ -102,38 +76,121 @@ Webtoon.where 문으로 선택된 장르가 있는 것들 찾아놨는데
 </div>
 </form>
 
-<% @webtoons.each do |webtoon| %>
+<div class="content8">
+    <div class="row">
+    <% @webtoons.each do |webtoon| %>
+        <div class="col-3">
+            <div class="finder-card">
+            <script>
+            $(function () {
+                $("#webtoon_id" + webtoon_id++).rateYo({
+                    starWidth: "40px",
+                    halfStar: true,
+                    onSet: function (rating, rateYoInstance) {
+                        // alert("Rating is set to: " + rating);
+                        window.location.href = "/webtoon/save?user_id=<%=current_user.id%>&web_id=<%=webtoon.id%>&rate="+rating;
+                    }
+                });
+            });
+            
+            // Getter
+            var onSet = $("#webtoon_id" + webtoon_id).rateYo("option", "onSet"); //returns the function
+             
+            // Setter
+            $("#webtoon_id" + webtoon_id).rateYo("option", "onSet", function () {
+                console.log("This is a new function");
+            }); //returns a jQuery Element
+            </script>
+    
 
-    <script>
-    $(function () {
-        $("#webtoon_id" + webtoon_id++).rateYo({
-            starWidth: "40px",
-            halfStar: true,
-            onSet: function (rating, rateYoInstance) {
-                // alert("Rating is set to: " + rating);
-                window.location.href = "/webtoon/save?user_id=<%=current_user.id%>&web_id=<%=webtoon.id%>&rate="+rating;
-            }
-        });
-    });
+            <div>
+    			  	<article>
+    					  <img src="<%=webtoon.thumbnail %>" class="finder-main-thum" data-toggle="modal" data-target="#<%=webtoon_id%>" width="200px" height="200px">
+    			  	<p class="webname"><%=webtoon.name%></p>
+    			  	</article>
+    			  	
+    			  <div class="modal fade" id="<%=webtoon_id%>" tabindex="-1" role="dialog" aria-labelledby="StarRatingModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="StarRatingModalLabel"><div class="average_title">평균별점 <div class="averageScore">
+                                        <% aver = 0 %>
+                                        <% webtoon_rate = Watched.where({ :web_id => webtoon.id }).all%>
+                                        <% if webtoon_rate.length != 0 %>
+                                            <% webtoon_rate.each do |view| %>
+                                                <% aver += view.rate %>
+                                            <% end %>
+                                            <%= (aver / webtoon_rate.length).round(2) %>
+                                        <% else %>
+                                            0.0
+                                        <% end %>
+                                    </div></div></h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                  <div class="findermodal">   
+                                    <img src="<%=webtoon.thumbnail%>" width="300px" height="300px">
+                                    <div class="webtoon_name_modal"><%=webtoon.name%></div>
+                                  </div>        
+                                  <!--별점과 보고싶어요-->
+                                    <div class="row">
+                                            <div class="rating_friends1">
+                                            <div class="col-8">
+                                            <% if Watched.exists?(:user_id => current_user.id, :web_id => webtoon.id) %>
+                                                <% rate = Watched.find_by(:user_id => current_user.id, :web_id => webtoon.id) %>
+                                                <div id=<%= 'webtoon_id' + webtoon_id.to_s %> class="starInWatched" data-rateyo-rating='<%=rate.rate%>'> </div>
+                                            <% else %>
+                                                <div id=<%= 'webtoon_id' + webtoon_id.to_s %> class="starInWatched"> </div>
+                                            <% end %>
+                                            
+                                            </div>
+                                            </div>
+                                            <div class="col-4">
+                                                <div class="rating_friends2">
+                                                    <% if Wish.exists?(:user_id => current_user.id, :web_id => webtoon.id) %>
+                                                        <a href="/webtoon/wish?user_id=<%=current_user.id%>&web_id=<%=webtoon.id%>" class="miss">
+                                                        <img src="/assets/fullheart.png" width="30px" height="30px">보고싶어요</a>
+                                                    <% else %> 
+                                                        <a href="/webtoon/wish?user_id=<%=current_user.id%>&web_id=<%=webtoon.id%>" class="miss">
+                                                        <img src="/assets/heart.png" width="30px" height="30px">보고싶어요</a>
+                                                    <% end %>
+                                                </div>
+                                            </div>
+                                    </div>
+                                     <!--모달속 댓글이 나오는 부분 (card)-->
+                                      <% if Comment.exists?(:webtoon_id => webtoon.id) %>
+                                        <%# Comment.where({ webtoon_id: webtoon.id }).each do |comm| %>
+                                        <% c = Comment.where( :webtoon_id => webtoon.id ).all%>
+                                        <% c.each do |comm| %>
+                                        <div class="modal-footer1">
+                                        <div class="card" style="width:465px;">
+                                        <div class="card-body">
+                                          <!--댓글 좋아요-->
+                                        <div class="f_like"><img src="assets/like_empty.png" style="width:40px; height:40px;"></div>
+                                        <h5><a href="/mypage/<%=comm.user_id%>"><%= User.find(comm.user_id).email %></a></h5>
+                                           <%=comm.comment %>
+                                         </div>
+                                    </div>
+                                    </div>
+                                        <%end%>
+                                    <%end%>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    			</div>
+        
     
-    // Getter
-    var onSet = $("#webtoon_id" + webtoon_id).rateYo("option", "onSet"); //returns the function
-     
-    // Setter
-    $("#webtoon_id" + webtoon_id).rateYo("option", "onSet", function () {
-        console.log("This is a new function");
-    }); //returns a jQuery Element
-    </script>
-    
-    <p><%= webtoon.name %></p>
     <!-- 웹툰과 사용자의 연결된 관람 정보 -->
-    <% if Watched.exists?(:user_id => current_user.id, :web_id => webtoon.id) %>
-        <% rate = Watched.find_by(:user_id => current_user.id, :web_id => webtoon.id) %>
-        <div id=<%= 'webtoon_id' + webtoon_id.to_s %> data-rateyo-rating='<%=rate.rate%>'> </div>
-    <% else %>
-        <div id=<%= 'webtoon_id' + webtoon_id.to_s %>> </div>
-    <% end %>
-
+    
+    
     <% webtoon_id += 1 %>
-<% end %>
-
+    
+    </div>
+    </div>
+    
+        <% end %>
+    </div>
+</div>

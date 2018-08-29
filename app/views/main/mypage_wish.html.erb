@@ -34,7 +34,7 @@
                                         <img src="/assets/peach.png" class="follow_img" alt="팔로우사진" width="80px" height"80px">
                                     </div>
                                     <div class="col-5">
-                                        <div class="follow_id">x.xyuri</div>
+                                        <div class="follow_id"></div>
                                         <div class="follow_name"><%= User.find(er.user_ing_id).email %></div>
                                     </div>
                                     <div class="col-5">
@@ -64,10 +64,10 @@
                             <% @following.each do |ing| %>
                                 <div class="row">
                                     <div class="col-2">
-                                        <img src="/assets/peach.jpg" class="follow_img" alt="팔로잉사진" width="80px" height"80px">
+                                        <img src="/assets/peach.png" class="follow_img" alt="팔로잉사진" width="80px" height"80px">
                                     </div>
                                     <div class="col-5">
-                                        <div class="follow_id">x.xyuri</div>
+                                        <div class="follow_id"></div>
                                         <div class="follow_name"><%= User.find(ing.user_er_id).email %></div>
                                     </div>
                                     <div class="col-5">
@@ -94,10 +94,10 @@
     <div class="lower_nav">
 	    <div class="navbar">
 		    <div class="button2">
-       	        <a class='lower_b1_in_wish' href="/mypage/<%=current_user.id%>" role="button">취향분석</a>
-       	        <a class='lower_b2_in_wish' href="/mypage/<%=current_user.id%>/watched" role="button">봤어요</a>
-       	        <a class='lower_b3_in_wish' href="/mypage/<%=current_user.id%>/wish" role="button">보고싶어요</a>
-       	        <a class='lower_b4_in_wish' href="/mypage/<%=current_user.id%>/comment" role="button">내가 쓴 댓글</a>
+       	        <a class='lower_b1_in_wish' href="/mypage/<%=@user.id%>" role="button">취향분석</a>
+       	        <a class='lower_b2_in_wish' href="/mypage/<%=@user.id%>/watched" role="button">봤어요</a>
+       	        <a class='lower_b3_in_wish' href="/mypage/<%=@user.id%>/wish" role="button">보고싶어요</a>
+       	        <a class='lower_b4_in_wish' href="/mypage/<%=@user.id%>/comment" role="button">내가 쓴 댓글</a>
        	    </div>
          </div>
     </div>
@@ -109,6 +109,7 @@
             <% webtoon_id = 1 %>
             
             <% @user.wishes.each do |webtoon| %>
+            <% this_webtoon =  Webtoon.find(webtoon.web_id) %>
                 <script>
                 
                 $(function () {
@@ -117,7 +118,7 @@
                         halfStar: true,
                         onSet: function (rating, rateYoInstance) {
                             // alert("Rating is set to: " + rating);
-                            window.location.href = "/webtoon/save?user_id=<%=current_user.id%>&web_id=<%=webtoon.id%>&rate="+rating;
+                            window.location.href = "/webtoon/save?user_id=<%=current_user.id%>&web_id=<%=this_webtoon.id%>&rate="+rating;
                         }
                     });
                 });
@@ -132,7 +133,7 @@
                        
                 </script>
                 
-                <% this_webtoon =  Webtoon.find(webtoon.web_id) %>
+                
             
                 <div class="col-3">
                 <div class="card_in_watched">
@@ -148,7 +149,18 @@
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="StarRatingModalLabel"><div class="average_title">평균별점 <div class="averageScore">4.23</div></div></h5>
+                                    <h5 class="modal-title" id="StarRatingModalLabel"><div class="average_title">평균별점 <div class="averageScore">
+                                        <% aver = 0 %>
+                                        <% webtoon_rate = Watched.where({ :web_id => webtoon.id }).all%>
+                                        <% if webtoon_rate.length != 0 %>
+                                            <% webtoon_rate.each do |view| %>
+                                                <% aver += view.rate %>
+                                            <% end %>
+                                            <%= (aver / webtoon_rate.length).round(2) %>
+                                        <% else %>
+                                            0.0
+                                        <% end %>
+                                    </div></div></h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -172,10 +184,10 @@
                                             <div class="col-4">
                                                 <div class="rating_friends2">
                                                     <% if Wish.exists?(:user_id => current_user.id, :web_id => this_webtoon.id) %>
-                                                        <a href="/webtoon/wish?user_id=<%=current_user.id%>&web_id=<%=this_webtoon.id%>">
+                                                        <a href="/webtoon/wish?user_id=<%=current_user.id%>&web_id=<%=this_webtoon.id%>" class="miss">
                                                         <img src="/assets/fullheart.png" width="30px" height="30px">보고싶어요</a>
                                                     <% else %> 
-                                                        <a href="/webtoon/wish?user_id=<%=current_user.id%>&web_id=<%=this_webtoon.id%>">
+                                                        <a href="/webtoon/wish?user_id=<%=current_user.id%>&web_id=<%=this_webtoon.id%>" class="miss">
                                                         <img src="/assets/heart.png" width="30px" height="30px">보고싶어요</a>
                                                     <% end %>
                                                 </div>

@@ -8,13 +8,14 @@
         <h2>오타쿠 양성</h2>
         </div>
         <!--카드1(이런 애니 어때?)-->
+      <div class="suggest1">
         <div class="o1">
             <section>
                 <p class="m1">이런 애니 어때?</p>
-                <p class="m2"><%= @mp_annimation.intro %></p>
+                <p class="m2"><%=@mp_annimation.intro%></p>
                 <div class="img2">
-                <img src="<%= @mp_annimation.thumbnail %>" width="350px" height="300px">
-                <h3 class="o1_t1"><%= @mp_annimation.name %></h3>
+                <img src='<%=@mp_annimation.thumbnail%>' width="350px" height="350px">
+                <h3 class="o1_t1"><%=@mp_annimation.name%></h3>
                 </div>
             </section>
         </div>
@@ -22,24 +23,25 @@
           <div class="o1">
             <section>
                 <p class="m3">이런 만화 어때?</p>
-                <p class="m4"><%= @mp_comic.intro %></p>
+                <p class="m4"><%=@mp_comic.intro%></p>
                 <div class="img3">
-                <img src="<%= @mp_comic.thumbnail %>" width="350px" height="300px">
-                <h3 class="o1_t1"><%= @mp_comic.name %></h3>
+                <img src='<%=@mp_comic.thumbnail%>' width="350px" height="350px">
+                <h3 class="o1_t1"><%=@mp_comic.name%></h3>
                 </div>
             </section>
         </div>
         <!--카드3(이런 영화 어때?)-->
-        <div class="o2">
+        <div class="o1">
             <section>
                 <p class="m1">이런 영화 어때?</p>
-                <p class="m2"><%= @mp_movie.intro %></p>
+                <p class="m2"><%=@mp_movie.intro%></p>
                 <div class="img2">
-                <img src="<%= @mp_movie.thumbnail %>" width="350px" height="300px">
-                <h3 class="o1_t1"><%= @mp_movie.name %></h3>
+                <img src='<%=@mp_movie.thumbnail%>' width="350px" height="350px">
+                <h3 class="o1_t1"><%=@mp_movie.name%></h3>
                 </div>
             </section>
         </div>
+    </div>    
         <!--footer와 콘텐츠 사이의 틈-->
        	<div class="q3"></div>
         </div>
